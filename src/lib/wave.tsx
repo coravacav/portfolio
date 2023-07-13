@@ -1,58 +1,75 @@
 'use client';
 
 import useMeasure from 'react-use-measure';
-import { ReactNode, useId } from 'react';
+import { ReactNode, useEffect, useId, useRef } from 'react';
 import clsx from 'clsx';
 
-export default function Wave({ className, children }: { className?: string; children: ReactNode }) {
-    const [ref, bounds] = useMeasure();
-    const uniqueId = useId();
+export default function Wave({
+    className,
+    children,
+    height = 10,
+}: {
+    className?: string;
+    children: ReactNode;
+    height?: number;
+}) {
+    const [contentRef, bounds] = useMeasure();
+    const svgRef = useRef<SVGSVGElement>();
 
-    const stroke = `url(#${uniqueId})`;
+    const gradientId = useId();
+    const patternId = useId();
+
+    const fill = `url(#${patternId})`;
+
+    const styles = {
+        width: bounds.width + 'px',
+        height: height + 'px',
+    };
+
+    const newspaperSpinning = [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }];
+
+    const newspaperTiming: KeyframeAnimationOptions = {
+        duration: 1000,
+        easing: 'linear',
+        iterations: Infinity,
+    };
+
+    useEffect(() => {
+        if (!svgRef.current) return;
+
+        const newspapers = svgRef.current.querySelectorAll('.wave');
+
+        const animations: Animation[] = [];
+
+        newspapers.forEach((newspaper) => animations.push(newspaper.animate(newspaperSpinning, newspaperTiming)));
+
+        return () => {
+            animations.forEach((animation) => animation.cancel());
+        };
+    }, []);
 
     return (
         <div className={clsx('relative', className)}>
-            <div ref={ref} className="w-min whitespace-nowrap">
+            <div ref={contentRef} className="w-min whitespace-nowrap">
                 {children}
             </div>
-            <svg
-                width={bounds.width + 'px'}
-                height="8px"
-                viewBox="0 2 50 6"
-                preserveAspectRatio="none"
-                className="absolute top-full"
-                role="none"
-            >
-                <path
-                    className="fill-transparent stroke-1 animate-waveleft"
-                    d="M 0 5 Q 5 0 10 5 T 20 5 T 30 5 T 40 5 T 50 5"
-                    style={{ stroke }}
-                />
-                <path
-                    className="fill-transparent stroke-1 animate-waveleft"
-                    d="M 0 5 Q 5 10 10 5 T 20 5 T 30 5 T 40 5 T 50 5"
-                    style={{ stroke }}
-                />
-                <path
-                    className="fill-transparent stroke-1 animate-waveright"
-                    d="M 0 5 Q 5 0 10 5 T 20 5 T 30 5 T 40 5 T 50 5"
-                    style={{ stroke }}
-                />
-                <path
-                    className="fill-transparent stroke-1 animate-waveright"
-                    d="M 0 5 Q 5 10 10 5 T 20 5 T 30 5 T 40 5 T 50 5"
-                    style={{ stroke }}
-                />
+            <svg {...styles} className="absolute top-full" role="none" ref={svgRef}>
+                <rect {...styles} style={{ fill }} />
                 <defs>
-                    <linearGradient id={uniqueId} x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
-                        {/* <animate attributeName="x1" dur="5s" values="0%;100%" repeatCount="indefinite" />
-                        <animate attributeName="x2" dur="5s" values="0%;100%" repeatCount="indefinite" /> */}
-                        <stop offset="0%" style={{ stopColor: '#723c70' }}></stop>
-                        <stop offset="25%" style={{ stopColor: '#a01a58' }}></stop>
-                        <stop offset="50%" style={{ stopColor: '#b7094c' }}></stop>
-                        <stop offset="75%" style={{ stopColor: '#a01a58' }}></stop>
-                        <stop offset="100%" style={{ stopColor: '#723c70' }}></stop>
-                    </linearGradient>
+                    <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
+                        <path
+                            className="fill-transparent stroke-[1.5px] stroke-[#a01a58] wave"
+                            d={`M 0 ${height / 2} Q ${height / 2} 0 ${height} ${height / 2} T ${height * 2} ${
+                                height / 2
+                            }`}
+                        />
+                        <path
+                            className="fill-transparent stroke-[1.5px] stroke-[#a01a58] wave"
+                            d={`M 0 ${height / 2} Q ${height / 2} ${height} ${height} ${height / 2} T ${height * 2} ${
+                                height / 2
+                            }`}
+                        />
+                    </pattern>
                 </defs>
             </svg>
         </div>
