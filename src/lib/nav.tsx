@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import { pageWidth } from '@/styles/pageWidth';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -16,15 +18,9 @@ export default function Nav() {
 
     return (
         <header className="bg-gray-900">
-            <nav
-                className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-                aria-label="Global"
-            >
+            <nav className={clsx('mx-auto flex items-center justify-between', pageWidth)} aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a
-                        href="/"
-                        className="-m-1.5 p-1.5 text-white font-semibold text-xl"
-                    >
+                    <a href="/" className="-m-1.5 p-1.5 text-white font-semibold text-xl">
                         Stefan Todorov
                     </a>
                 </div>
@@ -35,28 +31,18 @@ export default function Nav() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon
-                            className="h-6 w-6"
-                            aria-hidden="true"
-                        />
+                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a
-                            key={item.name}
-                            href={item.href}
-                            className="text-sm font-semibold leading-6 text-white"
-                        >
+                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
                             {item.name}
                         </a>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a
-                        href="#"
-                        className="text-sm font-semibold leading-6 text-white flex align-middle gap-2"
-                    >
+                    <a href="#" className="text-sm font-semibold leading-6 text-white flex align-middle gap-2">
                         Contact
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -75,19 +61,11 @@ export default function Nav() {
                     </a>
                 </div>
             </nav>
-            <Dialog
-                as="div"
-                className="lg:hidden"
-                open={mobileMenuOpen}
-                onClose={setMobileMenuOpen}
-            >
+            <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-10" />
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
                     <div className="flex items-center justify-between">
-                        <a
-                            href="#"
-                            className="-m-1.5 p-1.5"
-                        >
+                        <a href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-8 w-auto"
@@ -101,10 +79,7 @@ export default function Nav() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                            />
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                     </div>
                     <div className="mt-6 flow-root">
