@@ -43,7 +43,7 @@ export default function Nav() {
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Wave>
+                    <Wave height={8}>
                         <a href="#" className="text-sm font-semibold leading-6 text-white flex align-middle gap-2">
                             Contact
                             <svg

@@ -8,17 +8,19 @@ export default function Wave({
     className,
     children,
     height = 10,
+    color = '#a01a58',
+    duration = 1000,
 }: {
     className?: string;
     children: ReactNode;
     height?: number;
+    color?: string;
+    duration?: number;
 }) {
     const [contentRef, bounds] = useMeasure();
     const svgRef = useRef<SVGSVGElement>();
 
-    const gradientId = useId();
     const patternId = useId();
-
     const fill = `url(#${patternId})`;
 
     const styles = {
@@ -26,16 +28,16 @@ export default function Wave({
         height: height + 'px',
     };
 
-    const newspaperSpinning = [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }];
-
-    const newspaperTiming: KeyframeAnimationOptions = {
-        duration: 1000,
-        easing: 'linear',
-        iterations: Infinity,
-    };
-
     useEffect(() => {
         if (!svgRef.current) return;
+
+        const newspaperSpinning = [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }];
+
+        const newspaperTiming: KeyframeAnimationOptions = {
+            duration,
+            easing: 'linear',
+            iterations: Infinity,
+        };
 
         const newspapers = svgRef.current.querySelectorAll('.wave');
 
@@ -46,7 +48,10 @@ export default function Wave({
         return () => {
             animations.forEach((animation) => animation.cancel());
         };
-    }, []);
+    }, [height, duration]);
+
+    const hHeight = height / 2;
+    const dHeight = height * 2;
 
     return (
         <div className={clsx('relative', className)}>
@@ -58,16 +63,14 @@ export default function Wave({
                 <defs>
                     <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                         <path
-                            className="fill-transparent stroke-[1.5px] stroke-[#a01a58] wave"
-                            d={`M 0 ${height / 2} Q ${height / 2} 0 ${height} ${height / 2} T ${height * 2} ${
-                                height / 2
-                            }`}
+                            className="fill-transparent stroke-[1.5px] wave"
+                            d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
+                            style={{ stroke: color }}
                         />
                         <path
-                            className="fill-transparent stroke-[1.5px] stroke-[#a01a58] wave"
-                            d={`M 0 ${height / 2} Q ${height / 2} ${height} ${height} ${height / 2} T ${height * 2} ${
-                                height / 2
-                            }`}
+                            className="fill-transparent stroke-[1.5px] wave"
+                            d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
+                            style={{ stroke: color }}
                         />
                     </pattern>
                 </defs>
