@@ -1,47 +1,50 @@
 'use client';
 
 import useMeasure from 'react-use-measure';
-import { ReactNode, useEffect, useId, useState } from 'react';
+import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 import { pinkColor } from '@/styles/pinkColor';
 
-export default function Helix({
+type HelixAnimationProps = {
+    show?: boolean;
+    duration?: number;
+    style?: 'topright' | 'topleft' | 'none';
+    color?: string;
+    className?: string;
+    strokeWidth?: string;
+    height?: number;
+    svgWidth?: number | string;
+    extendLeft?: number;
+    extendRight?: number;
+    svgHeight?: number;
+};
+
+export function HelixAnimation({
+    show = true,
     className,
-    children,
+    svgWidth,
     height = 10,
     color = pinkColor,
     duration = 1000,
     extendLeft = 0,
     extendRight = 0,
     style = 'topright',
-}: {
-    className?: string;
-    children: ReactNode;
-    height?: number;
-    color?: string;
-    duration?: number;
-    extendLeft?: number;
-    extendRight?: number;
-    style?: 'topright' | 'topleft' | 'none';
-}) {
-    const [contentRef, bounds] = useMeasure();
+    strokeWidth = '1.5px',
+}: HelixAnimationProps) {
     const [svgRef, setSvgRef] = useState<SVGSVGElement | null>(null);
-    const [renderHelix, setRenderHelix] = useState(false);
 
     const patternId = useId();
     const fill = `url(#${patternId})`;
 
-    const width = bounds.width ? bounds.width + extendLeft + extendRight : 0;
-
     const styles = {
-        width,
+        width: typeof svgWidth === 'string' ? svgWidth : svgWidth + extendLeft + extendRight,
         height: height + 'px',
     };
 
     useEffect(() => {
         if (!svgRef) return;
-        if (!renderHelix) return;
+        if (!show) return;
 
         const newspaperSpinning = [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }];
 
@@ -60,29 +63,52 @@ export default function Helix({
         return () => {
             animations.forEach((animation) => animation.cancel());
         };
-    }, [height, duration, renderHelix, svgRef]);
+    }, [height, duration, show, svgRef]);
 
     const hHeight = height / 2;
     const dHeight = height * 2;
 
-    const svgStyles = {
-        left: -extendLeft + 'px',
-        right: -extendRight + 'px',
-    };
+    return (
+        <svg
+            {...styles}
+            className={className}
+            role="none"
+            ref={setSvgRef}
+            style={generateSvgStyles({
+                extendLeft,
+                extendRight,
+                style,
+            })}
+        >
+            <rect {...styles} style={{ fill }} />
+            <defs>
+                <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
+                    <path
+                        className="fill-transparent"
+                        d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
+                        style={{ stroke: color, strokeWidth }}
+                    />
+                    <path
+                        className="fill-transparent"
+                        d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
+                        style={{ stroke: color, strokeWidth }}
+                    />
+                </pattern>
+            </defs>
+        </svg>
+    );
+}
 
-    if (style !== 'none') {
-        svgStyles[
-            '-webkit-mask-image'
-        ] = `linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
-        svgStyles['-webkit-mask-size'] = '100% 50%';
-        svgStyles['-webkit-mask-repeat'] = 'no-repeat';
+export default function Helix({
+    className,
+    children,
+    ...rest
+}: {
+    children: ReactNode;
+} & HelixAnimationProps) {
+    const [contentRef, bounds] = useMeasure();
+    const [renderHelix, setRenderHelix] = useState(false);
 
-        if (style === 'topright') {
-            svgStyles['-webkit-mask-position'] = 'left top, right bottom';
-        } else if (style === 'topleft') {
-            svgStyles['-webkit-mask-position'] = 'left bottom, right top';
-        }
-    }
     return (
         <div
             className={clsx('relative w-min whitespace-nowrap', className)}
@@ -98,24 +124,31 @@ export default function Helix({
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
             >
-                <svg {...styles} className="absolute top-full" role="none" ref={setSvgRef} style={svgStyles}>
-                    <rect {...styles} style={{ fill }} />
-                    <defs>
-                        <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
-                            <path
-                                className="fill-transparent stroke-[1.5px]"
-                                d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-                                style={{ stroke: color }}
-                            />
-                            <path
-                                className="fill-transparent stroke-[1.5px]"
-                                d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-                                style={{ stroke: color }}
-                            />
-                        </pattern>
-                    </defs>
-                </svg>
+                <HelixAnimation className="absolute top-full" show={renderHelix} svgWidth={bounds.width} {...rest} />
             </Transition>
         </div>
     );
+}
+
+function generateSvgStyles({ extendLeft, extendRight, style }) {
+    const svgStyles: CSSProperties = {
+        left: -extendLeft + 'px',
+        right: -extendRight + 'px',
+    };
+
+    if (style !== 'none') {
+        svgStyles[
+            'WebkitMaskImage'
+        ] = `linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
+        svgStyles['WebkitMaskSize'] = '100% 50%';
+        svgStyles['WebkitMaskRepeat'] = 'no-repeat';
+
+        if (style === 'topright') {
+            svgStyles['WebkitMaskPosition'] = 'left top, right bottom';
+        } else if (style === 'topleft') {
+            svgStyles['WebkitMaskPosition'] = 'left bottom, right top';
+        }
+    }
+
+    return svgStyles;
 }
