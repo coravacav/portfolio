@@ -1,11 +1,11 @@
 'use client';
 
 import useMeasure from 'react-use-measure';
-import { ReactNode, useEffect, useId, useRef, useState } from 'react';
+import { ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 
-export default function Wave({
+export default function Helix({
     className,
     children,
     height = 10,

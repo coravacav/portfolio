@@ -1,4 +1,4 @@
-import Wave from '@/lib/wave';
+import Helix from '@/lib/wave';
 import { pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
 
@@ -7,9 +7,9 @@ export default function ContactPage() {
         <div className={clsx('flex flex-col text-white w-full mx-auto', pageWidth)}>
             <h1 className="text-4xl font-bold">Contact</h1>
 
-            <Wave>
+            <Helix>
                 <p className="mt-3">This is the contact page</p>
-            </Wave>
+            </Helix>
         </div>
     );
 }

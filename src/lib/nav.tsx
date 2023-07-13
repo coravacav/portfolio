@@ -5,7 +5,7 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
-import Wave from './wave';
+import Helix from './helix';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -39,7 +39,7 @@ export default function Nav() {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <Wave
+                        <Helix
                             key={item.name}
                             height={8}
                             extendLeft={5}
@@ -49,11 +49,11 @@ export default function Nav() {
                             <a href={item.href} className="text-sm font-semibold leading-6 text-white">
                                 {item.name}
                             </a>
-                        </Wave>
+                        </Helix>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Wave height={8}>
+                    <Helix height={8}>
                         <a href="#" className="text-sm font-semibold leading-6 text-white flex align-middle gap-2">
                             Contact
                             <svg
@@ -71,7 +71,7 @@ export default function Nav() {
                                 />
                             </svg>
                         </a>
-                    </Wave>
+                    </Helix>
                 </div>
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
