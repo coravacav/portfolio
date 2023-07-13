@@ -8,9 +8,7 @@ import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
 import {
     GitHubIcon,
-    InstagramIcon,
     LinkedInIcon,
-    TwitterIcon,
 } from '@/components/SocialIcons';
 import logoAirbnb from '@/images/logos/airbnb.svg';
 import logoFacebook from '@/images/logos/facebook.svg';
@@ -245,7 +243,7 @@ function Photos() {
                             key={image.src}
                             className={clsx(
                                 'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-                                rotations[imageIndex % rotations.length],
+                                rotations[imageIndex % rotations.length]
                             )}
                         >
                             <Image
@@ -255,7 +253,7 @@ function Photos() {
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         </div>
-                    ),
+                    )
                 )}
             </div>
         </div>
@@ -267,12 +265,11 @@ export default function Home({ articles }) {
         <>
             <Head>
                 <title>
-                    Spencer Sharp - Software designer, founder, and amateur
-                    astronaut
+                    Stefan Todorov - A software engineer shooting for elegance
                 </title>
                 <meta
                     name="description"
-                    content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+                    content="I’m Stefan, a software engineer who cares about the details and the execution."
                 />
             </Head>
             <Container className="mt-9">
@@ -281,22 +278,12 @@ export default function Home({ articles }) {
                         Software designer, founder, and amateur astronaut.
                     </h1>
                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I’m Spencer, a software designer and entrepreneur based
+                        I’m Stefan, a software designer and entrepreneur based
                         in New York City. I’m the founder and CEO of Planetaria,
                         where we develop technologies that empower regular
                         people to explore space on their own terms.
                     </p>
                     <div className="mt-6 flex gap-6">
-                        <SocialLink
-                            href="https://twitter.com"
-                            aria-label="Follow on Twitter"
-                            icon={TwitterIcon}
-                        />
-                        <SocialLink
-                            href="https://instagram.com"
-                            aria-label="Follow on Instagram"
-                            icon={InstagramIcon}
-                        />
                         <SocialLink
                             href="https://github.com"
                             aria-label="Follow on GitHub"
