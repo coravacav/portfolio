@@ -51,7 +51,7 @@ export default function Helix({
             iterations: Infinity,
         };
 
-        const newspapers = svgRef.querySelectorAll('.wave');
+        const newspapers = svgRef.querySelectorAll('path');
 
         const animations: Animation[] = [];
 
@@ -103,12 +103,12 @@ export default function Helix({
                     <defs>
                         <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                             <path
-                                className="fill-transparent stroke-[1.5px] wave"
+                                className="fill-transparent stroke-[1.5px]"
                                 d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                                 style={{ stroke: color }}
                             />
                             <path
-                                className="fill-transparent stroke-[1.5px] wave"
+                                className="fill-transparent stroke-[1.5px]"
                                 d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                                 style={{ stroke: color }}
                             />
