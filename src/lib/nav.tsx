@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
 import { usePathname } from 'next/navigation';
+import { pinkColor } from '@/styles/pinkColor';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -23,9 +24,18 @@ export default function Nav() {
         <header className="bg-gray-900">
             <nav className={clsx('mx-auto flex items-center justify-between', pageWidth)} aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a href="/" className="-m-1.5 p-1.5 text-white font-semibold text-xl">
-                        Stefan Todorov
-                    </a>
+                    <Helix
+                        height={16}
+                        extendLeft={10}
+                        extendRight={10}
+                        duration={4000}
+                        style="none"
+                        color={pinkColor + '60'}
+                    >
+                        <a href="/" className="-m-1.5 p-1.5 text-white font-semibold text-xl">
+                            Stefan Todorov
+                        </a>
+                    </Helix>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -53,7 +63,7 @@ export default function Nav() {
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Helix height={8}>
+                    <Helix height={8} style="topleft">
                         <a href="#" className="text-sm font-semibold leading-6 text-white flex align-middle gap-2">
                             Contact
                             <svg

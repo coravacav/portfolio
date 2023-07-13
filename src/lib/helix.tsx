@@ -4,15 +4,17 @@ import useMeasure from 'react-use-measure';
 import { ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
+import { pinkColor } from '@/styles/pinkColor';
 
 export default function Helix({
     className,
     children,
     height = 10,
-    color = '#a01a58',
+    color = pinkColor,
     duration = 1000,
     extendLeft = 0,
     extendRight = 0,
+    style = 'topright',
 }: {
     className?: string;
     children: ReactNode;
@@ -21,6 +23,7 @@ export default function Helix({
     duration?: number;
     extendLeft?: number;
     extendRight?: number;
+    style?: 'topright' | 'topleft' | 'none';
 }) {
     const [contentRef, bounds] = useMeasure();
     const [svgRef, setSvgRef] = useState<SVGSVGElement | null>(null);
@@ -62,6 +65,24 @@ export default function Helix({
     const hHeight = height / 2;
     const dHeight = height * 2;
 
+    const svgStyles = {
+        left: -extendLeft + 'px',
+        right: -extendRight + 'px',
+    };
+
+    if (style !== 'none') {
+        svgStyles[
+            '-webkit-mask-image'
+        ] = `linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
+        svgStyles['-webkit-mask-size'] = '100% 50%';
+        svgStyles['-webkit-mask-repeat'] = 'no-repeat';
+
+        if (style === 'topright') {
+            svgStyles['-webkit-mask-position'] = 'left top, right bottom';
+        } else if (style === 'topleft') {
+            svgStyles['-webkit-mask-position'] = 'left bottom, right top';
+        }
+    }
     return (
         <div
             className={clsx('relative w-min whitespace-nowrap', className)}
@@ -77,22 +98,7 @@ export default function Helix({
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
             >
-                <svg
-                    {...styles}
-                    className="absolute top-full"
-                    role="none"
-                    ref={setSvgRef}
-                    style={{
-                        left: -extendLeft + 'px',
-                        right: -extendRight + 'px',
-                        // @ts-expect-error -webkit-mask-image is not in the types
-                        '-webkit-mask-image':
-                            'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-                        '-webkit-mask-size': '100% 50%',
-                        '-webkit-mask-repeat': 'no-repeat',
-                        '-webkit-mask-position': 'left top, left bottom',
-                    }}
-                >
+                <svg {...styles} className="absolute top-full" role="none" ref={setSvgRef} style={svgStyles}>
                     <rect {...styles} style={{ fill }} />
                     <defs>
                         <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
