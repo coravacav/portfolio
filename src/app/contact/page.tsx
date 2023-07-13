@@ -1,4 +1,4 @@
-import Helix from '@/lib/wave';
+import Helix from '@/lib/helix';
 import { pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
 

@@ -85,6 +85,12 @@ export default function Helix({
                     style={{
                         left: -extendLeft + 'px',
                         right: -extendRight + 'px',
+                        // @ts-expect-error -webkit-mask-image is not in the types
+                        '-webkit-mask-image':
+                            'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+                        '-webkit-mask-size': '100% 50%',
+                        '-webkit-mask-repeat': 'no-repeat',
+                        '-webkit-mask-position': 'left top, left bottom',
                     }}
                 >
                     <rect {...styles} style={{ fill }} />
