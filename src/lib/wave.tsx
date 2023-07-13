@@ -10,12 +10,16 @@ export default function Wave({
     height = 10,
     color = '#a01a58',
     duration = 1000,
+    extendLeft = 0,
+    extendRight = 0,
 }: {
     className?: string;
     children: ReactNode;
     height?: number;
     color?: string;
     duration?: number;
+    extendLeft?: number;
+    extendRight?: number;
 }) {
     const [contentRef, bounds] = useMeasure();
     const svgRef = useRef<SVGSVGElement>();
@@ -23,8 +27,10 @@ export default function Wave({
     const patternId = useId();
     const fill = `url(#${patternId})`;
 
+    const width = bounds.width ? bounds.width + extendLeft + extendRight : 0;
+
     const styles = {
-        width: bounds.width + 'px',
+        width,
         height: height + 'px',
     };
 
@@ -54,11 +60,18 @@ export default function Wave({
     const dHeight = height * 2;
 
     return (
-        <div className={clsx('relative', className)}>
-            <div ref={contentRef} className="w-min whitespace-nowrap">
-                {children}
-            </div>
-            <svg {...styles} className="absolute top-full" role="none" ref={svgRef}>
+        <div className={clsx('relative w-min whitespace-nowrap', className)} ref={contentRef}>
+            {children}
+            <svg
+                {...styles}
+                className="absolute top-full"
+                role="none"
+                ref={svgRef}
+                style={{
+                    left: -extendLeft + 'px',
+                    right: -extendRight + 'px',
+                }}
+            >
                 <rect {...styles} style={{ fill }} />
                 <defs>
                     <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">

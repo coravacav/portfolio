@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Wave from './wave';
+import { usePathname } from 'next/navigation';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -16,6 +17,7 @@ const navigation = [
 
 export default function Nav() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const pathName = usePathname();
 
     return (
         <header className="bg-gray-900">
@@ -37,9 +39,17 @@ export default function Nav() {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
-                            {item.name}
-                        </a>
+                        <Wave
+                            key={item.name}
+                            height={8}
+                            extendLeft={5}
+                            extendRight={5}
+                            color={pathName === item.href ? 'blue' : undefined}
+                        >
+                            <a href={item.href} className="text-sm font-semibold leading-6 text-white">
+                                {item.name}
+                            </a>
+                        </Wave>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
