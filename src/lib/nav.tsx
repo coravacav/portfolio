@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix, { HelixAnimation } from './helix';
 import { usePathname } from 'next/navigation';
-import { pink, tropicalIndigo } from '@/styles/colors';
 import Link from 'next/link';
 
 const navigation = [
@@ -68,7 +67,7 @@ export default function Nav() {
                             className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                         >
                             <Helix
-                                height={8}
+                                height={12}
                                 extendLeft={5}
                                 extendRight={5}
                                 strokeColor={
@@ -89,7 +88,7 @@ export default function Nav() {
                         className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                     >
                         <Helix
-                            height={8}
+                            height={12}
                             style="topleft"
                             groupHoverColor="group-hover:stroke-tangerine"
                             strokeColor={pathName === '/contact' ? 'stroke-tropicalIndigo' : undefined}

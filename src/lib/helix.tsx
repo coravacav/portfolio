@@ -42,9 +42,16 @@ export function HelixAnimation({
     const fill = `url(#${patternId})`;
 
     const styles = {
-        width: typeof svgWidth === 'string' ? svgWidth : svgWidth + extendLeft + extendRight,
         height: height + 'px',
     };
+
+    if (svgWidth) {
+        if (typeof svgWidth === 'string') {
+            styles['width'] = svgWidth;
+        } else {
+            styles['width'] = svgWidth + extendLeft + extendRight;
+        }
+    }
 
     useEffect(() => {
         if (!svgRef) return;
