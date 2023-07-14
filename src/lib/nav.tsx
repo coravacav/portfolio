@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
 import { usePathname } from 'next/navigation';
-import { pinkColor } from '@/styles/pinkColor';
+import { pinkColor, tropicalIndigoColor } from '@/styles/pinkColor';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -54,7 +54,7 @@ export default function Nav() {
                             height={8}
                             extendLeft={5}
                             extendRight={5}
-                            color={pathName === item.href ? 'blue' : undefined}
+                            color={pathName === item.href ? tropicalIndigoColor : undefined}
                         >
                             <a href={item.href} className="text-sm font-semibold leading-6 text-white">
                                 {item.name}

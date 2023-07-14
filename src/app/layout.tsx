@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     height={20}
                     strokeWidth="2px"
                     style="none"
-                    color={pinkColor + '20'}
+                    color={pinkColor + '10'}
                     svgWidth="100%"
                     className="absolute bottom-0 left-0 right-0"
                 />
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     height={30}
                     strokeWidth="3px"
                     style="none"
-                    color={pinkColor + '20'}
+                    color={pinkColor + '10'}
                     svgWidth="100%"
                     className="absolute bottom-0 left-0 right-0"
                 />
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     height={40}
                     strokeWidth="4px"
                     style="none"
-                    color={pinkColor + '20'}
+                    color={pinkColor + '10'}
                     svgWidth="100%"
                     className="absolute bottom-0 left-0 right-0"
                 />
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     height={50}
                     strokeWidth="5px"
                     style="none"
-                    color={pinkColor + '20'}
+                    color={pinkColor + '10'}
                     svgWidth="100%"
                     className="absolute bottom-0 left-0 right-0"
                 />
