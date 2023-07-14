@@ -4,7 +4,22 @@ import useMeasure from 'react-use-measure';
 import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
-import { pink } from '@/styles/colors';
+import { usePathname } from 'next/navigation';
+import { atom, useAtom } from 'jotai';
+
+const renderHelixes = atom(typeof window !== 'undefined' && window.location.pathname !== '/');
+
+export const useHelixVisibility = () => {
+    return useAtom(renderHelixes);
+};
+
+export function EnsureHelixesAreVisible() {
+    const path = usePathname();
+    const [helixesVisible, setHelixesVisible] = useHelixVisibility();
+    if (path !== '/' && !helixesVisible) setHelixesVisible(true);
+
+    return null;
+}
 
 type HelixAnimationProps = {
     show?: boolean;
@@ -81,6 +96,10 @@ export function HelixAnimation({
     const hHeight = height / 2;
     const dHeight = height * 2;
 
+    const [helixesVisible] = useHelixVisibility();
+
+    const helixClasses = helixesVisible ? 'opacity-100' : 'opacity-0';
+
     if (!show) return null;
 
     return (
@@ -99,12 +118,22 @@ export function HelixAnimation({
             <defs>
                 <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                     <path
-                        className={clsx('transition-color duration-300 fill-transparent', strokeColor, groupHoverColor)}
+                        className={clsx(
+                            'transition-all duration-300 fill-transparent',
+                            strokeColor,
+                            groupHoverColor,
+                            helixClasses
+                        )}
                         d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
                     <path
-                        className={clsx('transition-color duration-300 fill-transparent', strokeColor, groupHoverColor)}
+                        className={clsx(
+                            'transition-all duration-300 fill-transparent',
+                            strokeColor,
+                            groupHoverColor,
+                            helixClasses
+                        )}
                         d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
