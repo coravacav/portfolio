@@ -18,45 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={inter.className}>
-            <body className="bg-gray-800 min-h-screen">
+            <body className="bg-gray-800 min-h-screen relative">
                 <Nav />
                 {children}
-                <HelixAnimation
-                    duration={300}
-                    height={20}
-                    strokeWidth="2px"
-                    style="none"
-                    color="stroke-pink/10"
-                    svgWidth="100%"
-                    className="absolute bottom-0 left-0 right-0"
-                />
-                <HelixAnimation
-                    duration={400}
-                    height={30}
-                    strokeWidth="3px"
-                    style="none"
-                    color="stroke-pink/10"
-                    svgWidth="100%"
-                    className="absolute bottom-0 left-0 right-0"
-                />
-                <HelixAnimation
-                    duration={500}
-                    height={40}
-                    strokeWidth="4px"
-                    style="none"
-                    color="stroke-pink/10"
-                    svgWidth="100%"
-                    className="absolute bottom-0 left-0 right-0"
-                />
-                <HelixAnimation
-                    duration={600}
-                    height={50}
-                    strokeWidth="5px"
-                    style="none"
-                    color="stroke-pink/10"
-                    svgWidth="100%"
-                    className="absolute bottom-0 left-0 right-0"
-                />
             </body>
         </html>
     );

@@ -10,11 +10,12 @@ type HelixAnimationProps = {
     show?: boolean;
     duration?: number;
     style?: 'topright' | 'topleft' | 'none';
-    color?: string;
+    strokeColor?: string;
     groupHoverColor?: string;
     className?: string;
     strokeWidth?: string;
     height?: number;
+    direction?: 'left' | 'right';
     svgWidth?: number | string;
     extendLeft?: number;
     extendRight?: number;
@@ -26,8 +27,9 @@ export function HelixAnimation({
     className,
     svgWidth,
     height = 10,
-    color = 'stroke-pink',
+    strokeColor = 'stroke-pink',
     groupHoverColor,
+    direction = 'left',
     duration = 1000,
     extendLeft = 0,
     extendRight = 0,
@@ -48,8 +50,10 @@ export function HelixAnimation({
         if (!svgRef) return;
         if (!show) return;
 
-        const newspaperSpinning = [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }];
-
+        const newspaperSpinning =
+            direction === 'left'
+                ? [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }]
+                : [{ transform: `translateX(-${height}px)` }, { transform: 'translateX(0)' }];
         const newspaperTiming: KeyframeAnimationOptions = {
             duration,
             easing: 'linear',
@@ -65,10 +69,12 @@ export function HelixAnimation({
         return () => {
             animations.forEach((animation) => animation.cancel());
         };
-    }, [height, duration, show, svgRef]);
+    }, [height, duration, show, svgRef, direction]);
 
     const hHeight = height / 2;
     const dHeight = height * 2;
+
+    if (!show) return null;
 
     return (
         <svg
@@ -86,12 +92,12 @@ export function HelixAnimation({
             <defs>
                 <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                     <path
-                        className={clsx('transition-color duration-300 fill-transparent', color, groupHoverColor)}
+                        className={clsx('transition-color duration-300 fill-transparent', strokeColor, groupHoverColor)}
                         d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
                     <path
-                        className={clsx('transition-color duration-300 fill-transparent', color, groupHoverColor)}
+                        className={clsx('transition-color duration-300 fill-transparent', strokeColor, groupHoverColor)}
                         d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
