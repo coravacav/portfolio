@@ -18,7 +18,7 @@ export default function BlogPage() {
     return (
         <div className="pt-16 sm:pt-24">
             <div className={clsx('mx-auto lg:px-8', pageWidth)}>
-                <div className="mx-auto max-w-2xl lg:mx-0 lg:mb-10  mb-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:mb-9 mb-3">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Blog</h2>
                     <p className="mt-2 text-lg leading-8 text-gray-300">
                         I write about things I like, things I don&apos;t like, and things I&apos;m learning.
