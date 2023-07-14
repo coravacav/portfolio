@@ -1,1 +1,1 @@
-export const pageWidth = 'max-w-7xl p-6';
+export const pageWidth = 'max-w-7xl px-6';

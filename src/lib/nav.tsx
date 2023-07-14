@@ -20,7 +20,7 @@ const navigation = [
 const Name = ({ hide = false }) => (
     <Link
         href="/"
-        className="-m-1.5 p-1.5 text-white font-semibold text-2xl group hover:text-tangerine transition-colors"
+        className="-m-1.5 p-1.5 text-white font-semibold text-2xl 2xl:text-3xl group hover:text-tangerine transition-colors"
     >
         <Helix
             height={16}
@@ -43,7 +43,10 @@ export default function Nav() {
 
     return (
         <header className="bg-gray-900">
-            <nav className={clsx('mx-auto flex items-center justify-between ', pageWidth)} aria-label="Global">
+            <nav
+                className={clsx('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
+                aria-label="Global"
+            >
                 <div className="flex lg:flex-1">
                     <Name />
                 </div>
@@ -62,13 +65,17 @@ export default function Nav() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-base font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
+                            className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                         >
                             <Helix
                                 height={8}
                                 extendLeft={5}
                                 extendRight={5}
-                                strokeColor={pathName === item.href ? 'stroke-tropicalIndigo' : undefined}
+                                strokeColor={
+                                    pathName == item.href || (item.href.length > 1 && pathName.startsWith(item.href))
+                                        ? 'stroke-tropicalIndigo'
+                                        : undefined
+                                }
                                 groupHoverColor="group-hover:stroke-tangerine"
                             >
                                 {item.name}
@@ -79,7 +86,7 @@ export default function Nav() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <Link
                         href="/contact"
-                        className="text-base font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
+                        className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                     >
                         <Helix
                             height={8}
