@@ -76,7 +76,12 @@ export default function Nav() {
                         href="/contact"
                         className="text-sm font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                     >
-                        <Helix height={8} style="topleft" groupHoverColor="group-hover:stroke-tangerine">
+                        <Helix
+                            height={8}
+                            style="topleft"
+                            groupHoverColor="group-hover:stroke-tangerine"
+                            color={pathName === '/contact' ? 'stroke-tropicalIndigo' : undefined}
+                        >
                             <span className="flex align-middle gap-2 ">
                                 Contact
                                 <svg
