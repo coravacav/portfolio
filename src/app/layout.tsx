@@ -18,8 +18,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={clsx('overflow-hidden', inter.className)}>
-            <body className="bg-gray-800 min-h-screen relative">
+        <html lang="en" className={clsx('', inter.className)}>
+            <body className="bg-gray-800 min-h-screen relative pb-10">
                 <Nav />
                 <EnsureHelixesAreVisible />
                 <FirefoxAnimationWarning />
