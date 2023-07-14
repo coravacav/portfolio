@@ -4,7 +4,7 @@ import useMeasure from 'react-use-measure';
 import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
-import { pinkColor } from '@/styles/pinkColor';
+import { pink } from '@/styles/colors';
 
 type HelixAnimationProps = {
     show?: boolean;
@@ -25,7 +25,7 @@ export function HelixAnimation({
     className,
     svgWidth,
     height = 10,
-    color = pinkColor,
+    color = 'stroke-pink',
     duration = 1000,
     extendLeft = 0,
     extendRight = 0,
@@ -84,14 +84,14 @@ export function HelixAnimation({
             <defs>
                 <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                     <path
-                        className="fill-transparent"
+                        className={clsx('fill-transparent', color)}
                         d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-                        style={{ stroke: color, strokeWidth }}
+                        style={{ strokeWidth }}
                     />
                     <path
-                        className="fill-transparent"
+                        className={clsx('fill-transparent', color)}
                         d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-                        style={{ stroke: color, strokeWidth }}
+                        style={{ strokeWidth }}
                     />
                 </pattern>
             </defs>

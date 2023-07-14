@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
 import { usePathname } from 'next/navigation';
-import { pinkColor, tropicalIndigoColor } from '@/styles/pinkColor';
+import { pink, tropicalIndigo } from '@/styles/colors';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -30,7 +30,7 @@ export default function Nav() {
                         extendRight={10}
                         duration={4000}
                         style="none"
-                        color={pinkColor + '60'}
+                        color="stroke-pink/60"
                     >
                         <a href="/" className="-m-1.5 p-1.5 text-white font-semibold text-xl">
                             Stefan Todorov
@@ -49,17 +49,20 @@ export default function Nav() {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <Helix
-                            key={item.name}
-                            height={8}
-                            extendLeft={5}
-                            extendRight={5}
-                            color={pathName === item.href ? tropicalIndigoColor : undefined}
+                        <a
+                            href={item.href}
+                            className="text-sm font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
                         >
-                            <a href={item.href} className="text-sm font-semibold leading-6 text-white">
+                            <Helix
+                                key={item.name}
+                                height={8}
+                                extendLeft={5}
+                                extendRight={5}
+                                color={pathName === item.href ? 'stroke-tropicalIndigo' : undefined}
+                            >
                                 {item.name}
-                            </a>
-                        </Helix>
+                            </Helix>
+                        </a>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
