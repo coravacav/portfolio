@@ -11,6 +11,7 @@ type HelixAnimationProps = {
     duration?: number;
     style?: 'topright' | 'topleft' | 'none';
     color?: string;
+    groupHoverColor?: string;
     className?: string;
     strokeWidth?: string;
     height?: number;
@@ -26,6 +27,7 @@ export function HelixAnimation({
     svgWidth,
     height = 10,
     color = 'stroke-pink',
+    groupHoverColor,
     duration = 1000,
     extendLeft = 0,
     extendRight = 0,
@@ -84,12 +86,12 @@ export function HelixAnimation({
             <defs>
                 <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
                     <path
-                        className={clsx('fill-transparent', color)}
+                        className={clsx('transition-color duration-300 fill-transparent', color, groupHoverColor)}
                         d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
                     <path
-                        className={clsx('fill-transparent', color)}
+                        className={clsx('transition-color duration-300 fill-transparent', color, groupHoverColor)}
                         d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
                     />
