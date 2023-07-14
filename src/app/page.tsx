@@ -17,7 +17,7 @@ export default function Home() {
 
     return (
         <div className={clsx('mx-auto pt-16 sm:pt-24', pageWidth)}>
-            <h1 className="text-white text-6xl leading-tight ">
+            <h1 className="text-white text-5xl leading-tight ">
                 <Typewriter
                     text={'Hi.\nWelcome to my portfolio.'}
                     onFinished={() => {
@@ -31,7 +31,7 @@ export default function Home() {
                 <HelixAnimation
                     svgWidth="100%"
                     className={clsx(
-                        'absolute w-full mt-3 left-0 transition-all duration-[4s] ease-out gap-x-4',
+                        'absolute w-full mt-4 md:mt-3 left-0 transition-all duration-[4s] ease-out gap-x-4',
                         helixStyles
                     )}
                     strokeColor="stroke-tangerine"
