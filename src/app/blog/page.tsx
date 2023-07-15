@@ -2,19 +2,14 @@ import { HelixAnimation } from '@/lib/helix';
 import { pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
 import Link from 'next/link';
-
-const posts = [
-    {
-        title: 'Neovim and VSCode',
-        href: '/blog/neovim-and-vscode',
-        description:
-            'A little journey through my experience with neovim, and why I stopped using it. I will also talk about my current setup and why I think it is the best for me.',
-        date: '???',
-        datetime: '???',
-    },
-];
+import fs from 'fs';
 
 export default function BlogPage() {
+    const posts = fs
+        .readdirSync('articles')
+        .map((filename) => require('articles/' + filename).frontmatter)
+        .filter(Boolean);
+
     return (
         <div className="pt-16 sm:pt-24">
             <div className={clsx('mx-auto lg:px-8', pageWidth)}>
@@ -33,22 +28,22 @@ export default function BlogPage() {
                     direction="right"
                 />
                 <div className="mt-8 lg:mt-20 mx-auto p-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {posts.map((post) => (
-                        <Link href={post.href} key={post.title}>
+                    {posts.map(({ href = '', title = '', description = '', date, datetime }) => (
+                        <Link href={href} key={title}>
                             <article className="flex flex-col items-start group justify-between p-4 rounded bg-tropicalIndigo/5 hover:bg-tropicalIndigo/10 transition-colors">
                                 <div>
                                     <h3 className="text-lg font-semibold leading-6 text-white transition-colors">
-                                        {post.title}
+                                        {title}
                                     </h3>
-                                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-300">
-                                        {post.description}
-                                    </p>
+                                    <p className="mt-5 text-sm leading-6 text-gray-300">{description}</p>
                                 </div>
-                                <div className="mt-3 flex items-center gap-x-4 text-xs">
-                                    <time dateTime={post.datetime} className="text-gray-500">
-                                        {post.date}
-                                    </time>
-                                </div>
+                                {date && datetime && (
+                                    <div className="mt-3 flex items-center gap-x-4 text-xs">
+                                        <time dateTime={datetime} className="text-gray-500">
+                                            {date}
+                                        </time>
+                                    </div>
+                                )}
                             </article>
                         </Link>
                     ))}
