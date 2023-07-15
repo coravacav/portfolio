@@ -28,7 +28,7 @@ export default function Typewriter({
                     let timeout = Math.random() * deviation + averageTimeout;
                     // Pause extra on a newline
                     if (text[newIndex - 1] === '\n') {
-                        timeout += 2000;
+                        timeout += 1000;
                     }
                     timeoutId = setTimeout(typeNextChar, timeout);
                 }

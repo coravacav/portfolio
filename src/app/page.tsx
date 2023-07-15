@@ -7,11 +7,11 @@ import clsx from 'clsx';
 import { atom, useAtom } from 'jotai';
 
 const hasVisitedAtom = atom(true);
-const stack = [16, 18, 38, 50, 80, 100];
 
 export default function Home() {
     const [rotated, setRotated] = useAtom(hasVisitedAtom);
     const [_, setHelixesVisible] = useHelixVisibility();
+    const isFirefox = typeof window !== 'undefined' && window.navigator.userAgent.includes('Firefox');
 
     const helixStyles = rotated ? 'opacity-0' : 'opacity-20';
 
@@ -27,7 +27,7 @@ export default function Home() {
                     disable={!rotated}
                 />
             </h1>
-            {stack.map((height) => (
+            {!isFirefox && (
                 <HelixAnimation
                     svgWidth="100%"
                     className={clsx(
@@ -35,12 +35,11 @@ export default function Home() {
                         helixStyles
                     )}
                     strokeColor="stroke-tangerine"
-                    height={height}
+                    height={100}
                     style="none"
                     direction="right"
-                    key={height}
                 />
-            ))}
+            )}
         </div>
     );
 }
