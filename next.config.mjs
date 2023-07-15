@@ -7,7 +7,6 @@ const nextConfig = {
     pageExtensions: ['ts', 'tsx', 'mdx'],
     reactStrictMode: true,
     experimental: {
-        mdxRs: true,
         scrollRestoration: true,
     },
 };

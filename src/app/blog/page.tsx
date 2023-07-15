@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 const posts = [
     {
-        title: "Why I tried neovim, and why it's not the editor for me",
-        href: '/blog/why-i-tried-neovim-and-why-its-not-the-editor-for-me',
+        title: 'Neovim and VSCode',
+        href: '/blog/neovim-and-vscode',
         description:
             'A little journey through my experience with neovim, and why I stopped using it. I will also talk about my current setup and why I think it is the best for me.',
         date: '???',
