@@ -26,9 +26,9 @@ const Name = ({ hide = false }) => (
             show={!hide}
             extendLeft={10}
             extendRight={10}
-            duration={4000}
             style="none"
             strokeColor="stroke-pink/60"
+            className="md:hidden"
             groupHoverColor="group-hover:stroke-tangerine"
         >
             Stefan Todorov

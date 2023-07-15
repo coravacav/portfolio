@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function BlogPostLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <nav aria-label="Blog Navigation" className="flex justify-center relative">
+            <nav aria-label="Blog Navigation" className={clsx('flex relative mx-auto', pageWidth)}>
                 <Link
                     href="/blog"
                     className="absolute top-4 text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"

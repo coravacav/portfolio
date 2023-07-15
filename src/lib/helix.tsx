@@ -155,7 +155,7 @@ export default function Helix({
 
     return (
         <div
-            className={clsx('relative w-min whitespace-nowrap', className)}
+            className="relative w-min whitespace-nowrap"
             ref={(ref) => {
                 contentRef(ref);
                 setRenderHelix(true);
@@ -168,7 +168,12 @@ export default function Helix({
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
             >
-                <HelixAnimation className="absolute top-full" show={renderHelix} svgWidth={bounds.width} {...rest} />
+                <HelixAnimation
+                    className={clsx('absolute top-full', className)}
+                    show={renderHelix}
+                    svgWidth={bounds.width}
+                    {...rest}
+                />
             </Transition>
         </div>
     );

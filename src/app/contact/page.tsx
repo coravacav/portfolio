@@ -1,6 +1,4 @@
-import Helix, { HelixAnimation } from '@/lib/helix';
-import { pageWidth } from '@/styles/pageWidth';
-import clsx from 'clsx';
+import { HelixAnimation } from '@/lib/helix';
 import Link from 'next/link';
 
 const Card = ({ children }) => {
