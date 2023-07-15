@@ -146,16 +146,18 @@ export function HelixAnimation({
 export default function Helix({
     className,
     children,
+    inline = false,
     ...rest
 }: {
     children: ReactNode;
+    inline?: boolean;
 } & HelixAnimationProps) {
     const [contentRef, bounds] = useMeasure();
     const [renderHelix, setRenderHelix] = useState(false);
 
     return (
         <div
-            className="relative w-min whitespace-nowrap"
+            className={clsx('relative w-min whitespace-nowrap', { inline })}
             ref={(ref) => {
                 contentRef(ref);
                 setRenderHelix(true);
