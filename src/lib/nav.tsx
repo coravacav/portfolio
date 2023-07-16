@@ -40,7 +40,7 @@ export default function Nav() {
     const pathName = usePathname();
 
     return (
-        <header className="bg-gray-900 border-b-2 border-b-gray-900">
+        <header className="bg-gray-900 border-b-2 border-b-gray-900 -ml-[calc(100vw-100%)] pl-[calc(100vw-100%)]">
             <nav
                 className={clsx('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
                 aria-label="Global"
