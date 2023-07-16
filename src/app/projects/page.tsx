@@ -1,10 +1,42 @@
-import { pageWidth } from '@/styles/pageWidth';
+import ProjectCard, { Project } from '@/lib/projectCard';
+import { pageTop, pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
+
+const projects: Project[] = [
+    {
+        name: 'Portfolio',
+        description: 'This website! Built with standard code standards and practices.',
+        href: 'https://github.com/coravacav/portfolio',
+        tech: ['React', 'Next.js', 'Tailwind', 'TypeScript'],
+    },
+    {
+        name: 'Auction Technology Group - Design System',
+        description:
+            "A design system for Auction Technology Group and all it's child marketplaces. This is the work I've done from 2022 ~ 2023.",
+        href: 'https://hammerui.auctiontechnologygroup.com',
+        tech: [
+            'React',
+            'TypeScript',
+            'Storybook',
+            'Tailwind',
+            'Jest',
+            'Testing Library',
+            'ESBuild',
+            'tsup',
+            'styled-components',
+        ],
+    },
+];
 
 export default function ProjectsPage() {
     return (
-        <div className={clsx('mx-auto pt-16 sm:pt-24', pageWidth)}>
-            <h1 className="text-3xl font-bold tracking-tight text-white">Projects</h1>
+        <div className={clsx('mx-auto', pageWidth, pageTop)}>
+            <h1 className="text-3xl font-bold tracking-tight text-white">My projects</h1>
+            <div className="flex flex-col mt-6 gap-4">
+                {projects.map((project) => (
+                    <ProjectCard key={project.name} project={project} />
+                ))}
+            </div>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import { HelixAnimation } from '@/lib/helix';
-import { pageWidth } from '@/styles/pageWidth';
+import { pageTop, pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
 import Link from 'next/link';
 import fs from 'fs';
@@ -11,7 +11,7 @@ export default function BlogPage() {
         .filter(Boolean);
 
     return (
-        <div className="pt-16 sm:pt-24">
+        <div className={clsx(pageTop)}>
             <div className={clsx('mx-auto lg:px-8', pageWidth)}>
                 <div className="mx-auto max-w-2xl lg:mx-0 lg:mb-9 mb-3">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Blog</h2>
