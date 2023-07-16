@@ -42,7 +42,7 @@ export function HelixAnimation({
     className,
     svgWidth,
     height = 10,
-    strokeColor = 'stroke-pink',
+    strokeColor = 'stroke-activatable',
     groupHoverColor,
     direction = 'left',
     duration = 1000,

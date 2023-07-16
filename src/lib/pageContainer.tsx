@@ -20,7 +20,7 @@ export default function PageContainer({ className, title, description, children 
             <HelixAnimation
                 svgWidth="100%"
                 className="absolute w-full left-0 right-0"
-                strokeColor="stroke-raisinBlack"
+                strokeColor="stroke-dark"
                 height={16}
                 style="none"
                 direction="right"

@@ -28,9 +28,9 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <a
                     href={project.href}
                     target="_blank"
-                    className="pt-2 mb-4 sm:pt-4 sm:pb-2 lg:pb-0 lg:mb-0 lg:ml-8 lg:pt-0 lg:px-4 group whitespace-nowrap lg:border-l-2 border-t-2 lg:border-t-0 hover:border-tangerine transition-colors border-tropicalIndigo/50 flex items-center justify-center"
+                    className="pt-2 mb-4 sm:pt-4 sm:pb-2 lg:pb-0 lg:mb-0 lg:ml-8 lg:pt-0 lg:px-4 group whitespace-nowrap lg:border-l-2 border-t-2 lg:border-t-0 hover:border-hover transition-colors border-activatable flex items-center justify-center"
                 >
-                    <Helix groupHoverColor="group-hover:stroke-tangerine">
+                    <Helix groupHoverColor="group-hover:stroke-hover">
                         <span className="text-white flex items-center">
                             See it here
                             <svg

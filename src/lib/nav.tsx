@@ -18,7 +18,7 @@ const navigation = [
 const Name = ({ hide = false }) => (
     <Link
         href="/"
-        className="-m-1.5 p-1.5 text-white font-semibold text-2xl 2xl:text-3xl group hover:text-tangerine transition-colors"
+        className="-m-1.5 p-1.5 text-white font-semibold text-2xl 2xl:text-3xl group hover:text-hover transition-colors"
     >
         <Helix
             height={16}
@@ -26,9 +26,9 @@ const Name = ({ hide = false }) => (
             extendLeft={10}
             extendRight={10}
             style="none"
-            strokeColor="stroke-pink/60"
+            strokeColor="stroke-activatable/60"
             className="lg:hidden"
-            groupHoverColor="group-hover:stroke-tangerine"
+            groupHoverColor="group-hover:stroke-hover"
         >
             Stefan Todorov
         </Helix>
@@ -63,7 +63,7 @@ export default function Nav() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
+                            className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-hover transition-colors"
                         >
                             <Helix
                                 height={12}
@@ -71,10 +71,10 @@ export default function Nav() {
                                 extendRight={5}
                                 strokeColor={
                                     pathName == item.href || (item.href.length > 1 && pathName.startsWith(item.href))
-                                        ? 'stroke-tropicalIndigo'
+                                        ? 'stroke-active'
                                         : undefined
                                 }
-                                groupHoverColor="group-hover:stroke-tangerine"
+                                groupHoverColor="group-hover:stroke-hover"
                             >
                                 {item.name}
                             </Helix>
@@ -84,13 +84,13 @@ export default function Nav() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <Link
                         href="/contact"
-                        className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-tangerine transition-colors"
+                        className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-hover transition-colors"
                     >
                         <Helix
                             height={12}
                             style="topleft"
-                            groupHoverColor="group-hover:stroke-tangerine"
-                            strokeColor={pathName === '/contact' ? 'stroke-tropicalIndigo' : undefined}
+                            groupHoverColor="group-hover:stroke-hover"
+                            strokeColor={pathName === '/contact' ? 'stroke-active' : undefined}
                         >
                             <span className="flex align-middle gap-2 ">
                                 Contact
@@ -145,7 +145,7 @@ export default function Nav() {
                                 svgWidth="calc(100% + 3rem)"
                                 style="none"
                                 className="-mx-6"
-                                strokeColor="stroke-pink/60"
+                                strokeColor="stroke-activatable/60"
                             />
                             <div className="py-6">
                                 <Link

@@ -8,8 +8,8 @@ const Card = ({ children }) => {
 
             <HelixAnimation
                 className="absolute bottom-0 left-0 right-0"
-                strokeColor="stroke-seashell/10"
-                groupHoverColor="group-hover:stroke-tropicalIndigo/20"
+                strokeColor="stroke-light/10"
+                groupHoverColor="group-hover:stroke-active/20"
                 duration={3000}
                 height={20}
                 style="none"
@@ -17,8 +17,8 @@ const Card = ({ children }) => {
             />
             <HelixAnimation
                 className="absolute top-0 left-0 right-0"
-                strokeColor="stroke-seashell/10"
-                groupHoverColor="group-hover:stroke-tropicalIndigo/20"
+                strokeColor="stroke-light/10"
+                groupHoverColor="group-hover:stroke-active/20"
                 duration={3000}
                 height={20}
                 style="none"
@@ -48,7 +48,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">Email</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
+                                        className="font-semibold text-hover hover:text-active transition-colors"
                                         href="mailto:stefan@stefanbt.com"
                                     >
                                         stefan@stefanbt.com
@@ -59,7 +59,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">LinkedIn</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
+                                        className="font-semibold text-hover hover:text-active transition-colors"
                                         target="_blank"
                                         href="https://www.linkedin.com/in/stefanbt/"
                                     >
@@ -71,7 +71,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">GitHub</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
+                                        className="font-semibold text-hover hover:text-active transition-colors"
                                         href="https://github.com/coravacav"
                                         target="_blank"
                                     >
@@ -82,7 +82,7 @@ export default function ContactPage() {
                             <Card>
                                 <h3 className="text-xl font-semibold leading-7 text-white">Discord</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
-                                    <span className="font-semibold text-tangerine">maskmonarch</span>
+                                    <span className="font-semibold text-hover">maskmonarch</span>
                                 </div>
                             </Card>
                         </div>

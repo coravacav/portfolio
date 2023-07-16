@@ -7,7 +7,13 @@ module.exports = {
     plugins: [require('@tailwindcss/typography')],
     theme: {
         extend: {
-            colors: require('./src/styles/colors'),
+            colors: {
+                active: customColors.tropicalIndigo,
+                hover: customColors.tangerine,
+                activatable: customColors.pink,
+                light: customColors.seashell,
+                dark: customColors.raisinBlack,
+            },
             neutral: colors.gray,
         },
     },

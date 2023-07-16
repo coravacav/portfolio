@@ -34,7 +34,7 @@ export default function Home() {
                         'absolute w-full mt-4 md:mt-3 left-0 transition-all duration-[4s] ease-out gap-x-4',
                         helixStyles
                     )}
-                    strokeColor="stroke-tangerine"
+                    strokeColor="stroke-hover"
                     height={100}
                     style="none"
                     direction="right"
