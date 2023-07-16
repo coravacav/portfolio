@@ -11,6 +11,7 @@ export default function BlogPage() {
     return (
         <PageContainer
             title="Blog"
+            className="p-4 grid gap-x-8 gap-y-16 lg:grid-cols-3"
             description="I write about things I like, things I don't like, and things I'm learning."
         >
             {posts.map(({ href = '', title = '', description = '', date, datetime }) => (

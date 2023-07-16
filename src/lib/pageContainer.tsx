@@ -7,9 +7,10 @@ type Props = {
     title: string;
     description: string;
     children?: ReactNode;
+    className?: string;
 };
 
-export default function PageContainer({ title, description, children }: Props) {
+export default function PageContainer({ className, title, description, children }: Props) {
     return (
         <div className={clsx('mx-auto lg:px-8', pageTop, pageWidth)}>
             <div className="mx-auto max-w-2xl lg:mx-0 lg:mb-9 mb-3">
@@ -24,9 +25,7 @@ export default function PageContainer({ title, description, children }: Props) {
                 style="none"
                 direction="right"
             />
-            <div className="mt-8 lg:mt-20 mx-auto p-4 max-w-2xl gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                {children}
-            </div>
+            <div className={clsx('mt-8 lg:mt-20 mx-auto max-w-2xl lg:mx-0 lg:max-w-none', className)}>{children}</div>
         </div>
     );
 }

@@ -34,13 +34,12 @@ export default function ProjectsPage() {
     return (
         <PageContainer
             title="My projects"
+            className="flex flex-col gap-4 p-4"
             description="A list of projects I've worked on, and a little bit about them."
         >
-            <div className="flex flex-col gap-4">
-                {projects.map((project) => (
-                    <ProjectCard key={project.name} project={project} />
-                ))}
-            </div>
+            {projects.map((project) => (
+                <ProjectCard key={project.name} project={project} />
+            ))}
         </PageContainer>
     );
 }
