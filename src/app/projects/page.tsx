@@ -36,7 +36,7 @@ export default function ProjectsPage() {
             title="My projects"
             description="A list of projects I've worked on, and a little bit about them."
         >
-            <div className="flex flex-col mt-6 gap-4">
+            <div className="flex flex-col gap-4">
                 {projects.map((project) => (
                     <ProjectCard key={project.name} project={project} />
                 ))}
