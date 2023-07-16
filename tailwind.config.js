@@ -8,7 +8,7 @@ module.exports = {
     theme: {
         colors: {
             ...colors,
-            neutral: colors.gray,
+            neutral: colors.neutral,
             active: customColors.tropicalIndigo,
             hover: customColors.tangerine,
             activatable: customColors.pink,
