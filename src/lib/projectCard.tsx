@@ -9,8 +9,8 @@ export type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
     return (
-        <article className="bg-gray-900 rounded-lg shadow-md flex sm:flex-row flex-col justify-between overflow-hidden">
-            <div className="p-4 sm:p-6 flex-grow">
+        <article className="bg-gray-900 rounded-lg shadow-md flex lg:flex-row flex-col justify-between overflow-hidden">
+            <div className="p-4 lg:p-6 flex-grow">
                 <h3 className="text-lg font-bold text-white">{project.name}</h3>
                 <p className="mt-4 text-base text-gray-300 whitespace-pre-line">{project.description}</p>
                 <div className="mt-6 flex gap-2 flex-wrap">
@@ -28,7 +28,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <a
                     href={project.href}
                     target="_blank"
-                    className="pt-2 mb-4 sm:mb-0 sm:ml-8 sm:pt-0 sm:px-4 group whitespace-nowrap sm:border-l-2 border-t-2 sm:border-t-0 hover:border-tangerine transition-colors border-tropicalIndigo/50 flex items-center justify-center"
+                    className="pt-2 mb-4 sm:pt-4 sm:pb-2 lg:pb-0 lg:mb-0 lg:ml-8 lg:pt-0 lg:px-4 group whitespace-nowrap lg:border-l-2 border-t-2 lg:border-t-0 hover:border-tangerine transition-colors border-tropicalIndigo/50 flex items-center justify-center"
                 >
                     <Helix groupHoverColor="group-hover:stroke-tangerine">
                         <span className="text-white flex items-center">
