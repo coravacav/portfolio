@@ -1,3 +1,5 @@
+import { HelixAnimation } from '@/lib/helix';
+import PageContainer from '@/lib/pageContainer';
 import ProjectCard, { Project } from '@/lib/projectCard';
 import { pageTop, pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
@@ -30,13 +32,15 @@ const projects: Project[] = [
 
 export default function ProjectsPage() {
     return (
-        <div className={clsx('mx-auto', pageWidth, pageTop)}>
-            <h1 className="text-3xl font-bold tracking-tight text-white">My projects</h1>
+        <PageContainer
+            title="My projects"
+            description="A list of projects I've worked on, and a little bit about them."
+        >
             <div className="flex flex-col mt-6 gap-4">
                 {projects.map((project) => (
                     <ProjectCard key={project.name} project={project} />
                 ))}
             </div>
-        </div>
+        </PageContainer>
     );
 }
