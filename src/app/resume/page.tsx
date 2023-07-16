@@ -8,11 +8,15 @@ const Item = ({ children }) => (
 
 export default function ProjectsPage() {
     return (
-        <PageContainer title="Resume" className={clsx(prose)} description="My qualifications and experience.">
+        <PageContainer
+            title="Resume"
+            className={clsx('print:not-prose', prose)}
+            description="My qualifications and experience."
+        >
             <section>
-                <h2>Experience</h2>
+                <h2 className="p-2 -ml-2 bg-gray-900 rounded-md">Experience</h2>
                 <article>
-                    <h3>
+                    <h3 className="p-2 -ml-2 bg-gray-900/50 rounded-md">
                         Senior Design System Engineer{' '}
                         <span className="text-gray-500 inline-block">
                             / Auction Technology Group (9/2023 - Present)
@@ -31,7 +35,7 @@ export default function ProjectsPage() {
                     </p>
                 </article>
                 <article>
-                    <h3>
+                    <h3 className="p-2 -ml-2 bg-gray-900/50 rounded-md">
                         Software Developer{' '}
                         <span className="text-gray-500 inline-block">/ LiveAuctioneers (7/2019 – 9/2022)</span>
                     </h3>
@@ -44,7 +48,7 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2>Proficient Technologies</h2>
+                    <h2 className="p-2 -ml-2 bg-gray-900 rounded-md">Proficient Technologies</h2>
                     <div className="not-prose">
                         <ul className="flex flex-wrap gap-3 not-prose">
                             <Item>React</Item>
@@ -69,7 +73,7 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2>Ceritifcations</h2>
+                    <h2 className="p-2 -ml-2 bg-gray-900 rounded-md">Ceritifcations</h2>
                     <p>A lot of these do not show value. Hence why I'm missing them for the languages I use daily</p>
                     <div className="not-prose">
                         <ul className="flex flex-wrap gap-3 not-prose">
@@ -87,8 +91,9 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2>Education</h2>
-                    <h3>
+                    <h2 className="p-2 -ml-2 bg-gray-900 rounded-md">Education</h2>
+
+                    <h3 className="p-2 -ml-2 bg-gray-900/50 rounded-md">
                         University of Utah{' '}
                         <span className="text-gray-500 inline-block">/ Bachelors of Computer Science</span>
                     </h3>
@@ -104,7 +109,7 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2>Fun facts</h2>
+                    <h2 className="p-2 -ml-2 bg-gray-900 rounded-md">Fun facts</h2>
                     <ul>
                         <li>Bilingual with English and Bulgarian</li>
                         <li>I got my first programming book at 6 years old. Good ol' Java 8 OOP.</li>

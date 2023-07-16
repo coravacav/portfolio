@@ -103,7 +103,7 @@ export function HelixAnimation({
     return (
         <svg
             {...styles}
-            className={className}
+            className={clsx('print:hidden', className)}
             role="none"
             ref={setSvgRef}
             style={generateSvgStyles({
