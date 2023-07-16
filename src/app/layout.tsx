@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className={clsx('pl-[calc(100vw-100%)]', inter.className)}>
-            <body className="bg-gray-800 min-h-screen relative pb-10">
+            <body className="bg-neutral-800 min-h-screen relative pb-10">
                 <Nav />
                 <EnsureHelixesAreVisible />
                 <FirefoxAnimationWarning />

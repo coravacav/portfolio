@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Card = ({ children }) => {
     return (
-        <div className="relative rounded-2xl bg-gray-900 p-10 overflow-hidden group">
+        <div className="relative rounded-2xl bg-neutral-900 p-10 overflow-hidden group">
             {children}
 
             <HelixAnimation
@@ -33,11 +33,11 @@ export default function ContactPage() {
     return (
         <div className="py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl space-y-16 divide-y divide-gray-100 lg:mx-0 lg:max-w-none">
+                <div className="mx-auto max-w-2xl space-y-16 divide-y divide-neutral-100 lg:mx-0 lg:max-w-none">
                     <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
                         <div>
                             <h2 className="text-3xl font-bold tracking-tight text-white">Get in touch</h2>
-                            <p className="mt-4 leading-7 text-gray-300">
+                            <p className="mt-4 leading-7 text-neutral-300">
                                 Together, we can create amazing things.
                                 <br />
                                 Reach out!
@@ -46,7 +46,7 @@ export default function ContactPage() {
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8">
                             <Card>
                                 <h3 className="text-xl font-semibold leading-7 text-white">Email</h3>
-                                <div className="mt-3 space-y-1 text-base leading-6 text-gray-300">
+                                <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
                                         className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
                                         href="mailto:stefan@stefanbt.com"
@@ -57,7 +57,7 @@ export default function ContactPage() {
                             </Card>
                             <Card>
                                 <h3 className="text-xl font-semibold leading-7 text-white">LinkedIn</h3>
-                                <div className="mt-3 space-y-1 text-base leading-6 text-gray-300">
+                                <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
                                         className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
                                         target="_blank"
@@ -69,7 +69,7 @@ export default function ContactPage() {
                             </Card>
                             <Card>
                                 <h3 className="text-xl font-semibold leading-7 text-white">GitHub</h3>
-                                <div className="mt-3 space-y-1 text-base leading-6 text-gray-300">
+                                <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
                                         className="font-semibold text-tangerine hover:text-tropicalIndigo transition-colors"
                                         href="https://github.com/coravacav"
@@ -81,7 +81,7 @@ export default function ContactPage() {
                             </Card>
                             <Card>
                                 <h3 className="text-xl font-semibold leading-7 text-white">Discord</h3>
-                                <div className="mt-3 space-y-1 text-base leading-6 text-gray-300">
+                                <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <span className="font-semibold text-tangerine">maskmonarch</span>
                                 </div>
                             </Card>

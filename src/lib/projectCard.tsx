@@ -9,15 +9,15 @@ export type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
     return (
-        <article className="bg-gray-900 rounded-lg shadow-md flex lg:flex-row flex-col justify-between overflow-hidden">
+        <article className="bg-neutral-900 rounded-lg shadow-md flex lg:flex-row flex-col justify-between overflow-hidden">
             <div className="p-4 lg:p-6 flex-grow">
                 <h3 className="text-lg font-bold text-white">{project.name}</h3>
-                <p className="mt-4 text-base text-gray-300 whitespace-pre-line">{project.description}</p>
+                <p className="mt-4 text-base text-neutral-300 whitespace-pre-line">{project.description}</p>
                 <div className="mt-6 flex gap-2 flex-wrap">
                     {project.tech.map((tech) => (
                         <span
                             key={tech}
-                            className="px-2 py-1 text-sm font-semibold text-gray-100 bg-gray-700 rounded-full"
+                            className="px-2 py-1 text-sm font-semibold text-neutral-100 bg-neutral-700 rounded-full"
                         >
                             {tech}
                         </span>
