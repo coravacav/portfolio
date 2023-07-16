@@ -9,7 +9,7 @@ export default function BlogPostLayout({ children }: { children: React.ReactNode
             <nav aria-label="Blog Navigation" className={clsx('flex relative mx-auto justify-between')}>
                 <Link
                     href="/blog"
-                    className="my-4 text-base 2xl:text-xl font-semibold leading-6 text-white group hover:bg-pink/60 transition-colors flex items-center gap-2 bg-pink/40 rounded-lg p-2"
+                    className="my-4 text-base 2xl:text-xl font-semibold leading-6 text-white group hover:bg-gray-900/50 transition-colors flex items-center gap-2 bg-gray-900 rounded-lg p-2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
