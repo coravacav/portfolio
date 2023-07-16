@@ -59,6 +59,7 @@ export default function ProjectsPage() {
                             <Item>Svelte</Item>
                             <Item>Node.js</Item>
                             <Item>Express</Item>
+                            <Item>SQL</Item>
                             <Item>Rust</Item>
                             <Item>Tokio</Item>
                             <Item>Axum</Item>
@@ -69,6 +70,7 @@ export default function ProjectsPage() {
             <section>
                 <article>
                     <h2>Ceritifcations</h2>
+                    <p>A lot of these do not show value. Hence why I'm missing them for the languages I use daily</p>
                     <div className="not-prose">
                         <ul className="flex flex-wrap gap-3 not-prose">
                             <Item>Java</Item>
