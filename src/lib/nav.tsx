@@ -10,10 +10,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const navigation = [
-    { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Projects', href: '/projects' },
     { name: 'Resume', href: '/resume' },
-    { name: 'Blog', href: '/blog' },
 ];
 
 const Name = ({ hide = false }) => (
@@ -41,7 +40,7 @@ export default function Nav() {
     const pathName = usePathname();
 
     return (
-        <header className="bg-gray-900">
+        <header className="bg-gray-900 border-b-2 border-b-gray-900">
             <nav
                 className={clsx('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
                 aria-label="Global"
@@ -116,7 +115,7 @@ export default function Nav() {
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-10" />
-                <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+                <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10 ">
                     <div className="flex items-center justify-between">
                         <Name hide />
                         <button

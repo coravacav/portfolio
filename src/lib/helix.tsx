@@ -98,9 +98,7 @@ export function HelixAnimation({
 
     const [helixesVisible] = useHelixVisibility();
 
-    const helixClasses = helixesVisible ? 'opacity-100' : 'opacity-0';
-
-    if (!show) return null;
+    const helixClasses = show && helixesVisible ? 'opacity-100' : 'opacity-0';
 
     return (
         <svg

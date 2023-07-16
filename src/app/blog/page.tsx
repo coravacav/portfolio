@@ -32,10 +32,10 @@ export default function BlogPage() {
                         <Link href={href} key={title}>
                             <article className="flex flex-col items-start group justify-between p-4 rounded bg-tropicalIndigo/5 hover:bg-tropicalIndigo/10 transition-colors">
                                 <div>
-                                    <h3 className="text-lg font-semibold leading-6 text-white transition-colors">
+                                    <h3 className="text-xl font-semibold leading-6 text-white transition-colors">
                                         {title}
                                     </h3>
-                                    <p className="mt-5 text-sm leading-6 text-gray-300">{description}</p>
+                                    <p className="mt-5 text-md leading-6 text-gray-300">{description}</p>
                                 </div>
                                 {date && datetime && (
                                     <div className="mt-3 flex items-center gap-x-4 text-xs">

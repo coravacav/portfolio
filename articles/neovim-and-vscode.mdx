@@ -8,18 +8,136 @@ href: '/blog/neovim-and-vscode'
 
 I used VSCode since roughly 2017.
 It was a far cry from the traditional "IDE" I was used to before, and I found it really nice.
-Mainly, the key things that I liked about it was it's ability to use multiline and multicursor far better than any editor I had used before it.
+Mainly I liked its ability to use multiline and multicursor far better than any editor I had used before it.
+It was also "fast".
+
+But... I wanted to move away
+
+## Why not VSCode?
+
+After years of using VSCode, I started to get annoyed with it. I only really had three key complaints (see my article about [vim motions](/blog/why-vim-motions-are-not-as-good-as-you-think) if you want to see why they weren't problems for me).
+
+-   It was slow to startup (especially with a lot of plugins)
+-   I worked on a remote machine, and doing that with VSCode SSH (while great), was even slower to startup because you had to open VSCode first, then connect, then it reopens itself.
+-   Managing files is a pain. There's no good way to "create file at path".
 
 ## Why Neovim?
 
-After years of using it, I started to get annoyed with it. I only really had three key complaints.
-
--   It was slow to startup (especially with a lot of plugins)
--   I worked on a remote machine, and doing that with VSCode SSH (while great), was even slower to startup because you had to open VSCode first, then connect, then reopen it.
--   Managing files is a pain. There's no good way to "create file at path".
-
 I had heard about Neovim, and I had heard that it was fast, and I had heard that it was good for remote development. Sounds perfect! So I gave it a go.
+
+I knew what I was getting in to, so I didn't make it a week long escapade (a common mistake). I used Neovim for 2 or so months. I used it for work, I used it for personal projects, I used it for everything. Hours a day. I read the `usr_txt##` docs, I got relatively proficient with using visual mode, macros, text objects, and many of the other things that make vim great.
+
+I really did enjoy the experience and I had a lot of fun with it. I even [wrote a plugin for it](https://github.com/coravacav/onemap.nvim) (which I still use to this day). Here's a non exhaustive list of what I really liked about it.
+
+-   `oil.nvim`. If you take anything away from this post, take a look at that plugin. It's a game changer. I could create files and folders, manage them, and all with the very vim motions that I liked.
+-   Leader key. You can do very complicated things with a single melody of keypresses.
+-   Text objects. I like being able to select certain portions of text quickly. It's something I miss greatly.
+-   `/textIwantToFind`. I like being able to search for text and jump to it quickly. I know what I'm looking for much of the time, and I don't want to have to use my mouse to find it.
+
+### I'm still using Neovim for all non project file editing. It's really nice for just editing text.
+
+Great mood booster when I chuckle at it opening in the VSCode integrated terminal.
+
+## What went wrong?
+
+### Ultimately, the Neovim / terminal focused workflow _just isn't for me_.
+
+It might be for you and it definitely isn't for everyone (so don't shove it down their throats). Editing multiple files at once (think: refactor)? Cumbersome. Comparing those two files? Clunky. Use a terminal command to solve x thing that Neovim can't do? Annoying.
+
+Sure, a lot of these problems can be solved with a lot of keypresses / knowledge like "well ackshually just open all the files into a quickfix list and use macros to edit them all" (since, obviously, every change can be done by a macro and definitely requires no thought). But that's damn overhead!
+
+Let me focus on what I actually want to do: get code written.
+
+### Overhead overhead overhead everywhere I damn looked.
+
+I honestly don't understand people who think that Neovim let's them "focus on code" when anytime you want do something than literally write characters (maybe something only I do) it's now time to think.
+
+Oh and multicursor. So many people say that Neovim has it better with either find and replaces, global commands, or macros. But boy oh boy is it a damn pain to do even the most simple "I want to replace these two selections".
+
+To be clear, things like text objects improve the overhead, but again, not talking about strictly text editing here.
+
+## Why move back to VSCode?
+
+If you couldn't tell, I stopped using Neovim. I moved back to VSCode for project level editing.
+
+A foreword: You'll notice a lot of these are "I want to use the mouse". It's not that, it's just faster a lot of the time, and that's something people should appreciate more.
+
+### 1. Being able to scroll around, and not lose where my cursor is.
+
+This is actually the biggest thing for me.
+I often times need to check context of something, and I don't want to have to think about it.
+I know that I can use marks (how to jump to parts of a file you've saved in vim), but I don't want to have to think about it, it's just more overhead.
+
+### 2. Having new files open in tabs.
+
+One word: overhead.
+I don't want to have to think about where I'm going to open a file, I just want it to open in a tab.
+Managing tabs is also pretty easy. Just close them all anytime it's cluttered.
+
+### 3. Builtin git solution
+
+I don't like most git solutions, but I like VSCode's.
+It tells me what files are staged, which are not, and their changes in a nice view.
+Everything else like merging I'd rather do with the CLI (but still, all the changes + readding stuff shows in VSCode)
+
+I tried many from `fugitive`, `gitui`, and `lazygit`. None of them gave me the things I wanted, easily, and nothing more.
+
+### 4. A file tree is actually pretty nice
+
+I can always enter zen mode if I wanna hide all the garbage, or, just minimize it.
+It's nice to have different parts of the codebase visible to go to at once.
+
+### 5. Multicursor
+
+Being able to do `ctrl/cmd+d` in vscode to change something like all the tailwind classes in a file is really nice.
+Also, having things that aren't in the same place, or have the same pattern, have the same modification, is really quick too.
+
+A note: checkout ["Multiple cursor case preserve"](https://marketplace.visualstudio.com/items?itemName=Cardinal90.multi-cursor-case-preserve) if you haven't.
+
+It is less overhead, and less keypresses.
+I know it's less powerful than a macro, but it's less thinking, and how often are those features really faster / needed?
+
+### 6. A lot of the CLI improvements carry over
+
+I can still use `ripgrep` and `fd` and `fzf` and `gitui` and `lazygit` and the list goes on. Just pipe most of that into `code -r` and you're good to go. Switch windows to the terminal and do that. It's fine. Really.
+
+### 7. Extensions.
+
+I don't want to have to keep reconfigurating my editor every time something updates.
+
+-   Null-ls going offline, with no great replacement that I've seen, is not ideal
+-   Having to read change logs just to upgrade stuff, is not ideal
+
+### 8. Global search and replace
+
+Either I get Neovim's basically nonexistant "easy" way to do it, or I deal with a CLI app that is no longer my editor (and is therefore missing text modification ability)
+
+### 9. SSH?
+
+You might be confused and wonder why this is a reason to switch back. Wasn't it a reason to switch away?
+
+But here's the thing: SSH tunneling of my ports to my remote machine was so tedious, that I started developing locally on my machines for projects I was able to to save myself the headache.
+
+_This was true for Neovim too._
+
+So I just stopped! And that problem went away. But, being able to tunnel to a SSH connection _and have the ports passthrough on the offchance I end up doing it_ is far more valuable than startup time.
 
 ## What can anyone learn from this?
 
-Ultimately, know your tools. If I had spent the same time configuring VSCode as I was forced to for Neovim, I probably would have been able to get it even more productive.
+### Try new things!
+
+I'm glad I tried Neovim. I learned a lot about how I like to work, and I learned a lot about how I don't like to work. I also learned a lot about how I can make my workflow better in VSCode. Spending half the time configuring VSCode as I did Neovim, I was able to get a lot of the same benefits.
+
+### Don't jump to Neovim because you think it's going to make you a better programmer.
+
+It won't. It's just a tool. It's a tool that you can use to make yourself more productive (no guarantee).
+
+It's a tool that's good for text editing, not necessarily as an IDE.
+
+{
+// Check out [other ways to be productive](/blog/ways-to-be-productive) and see if they work for you.
+}
+
+### Ultimately, know your tools.
+
+If I had spent the same time configuring VSCode as I was forced to for Neovim, I probably would have been able to get it even more productive.
