@@ -1,16 +1,16 @@
 'use client';
 
-import { HelixAnimation, useHelixVisibility } from '@/lib/helix';
+import { HelixAnimation, renderHelixes } from '@/lib/helix';
 import Typewriter from '@/lib/typewriter';
 import { pageWidth } from '@/styles/pageWidth';
 import clsx from 'clsx';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useSetAtom } from 'jotai';
 
 const hasVisitedAtom = atom(true);
 
 export default function Home() {
     const [rotated, setRotated] = useAtom(hasVisitedAtom);
-    const [_, setHelixesVisible] = useHelixVisibility();
+    const setHelixesVisible = useSetAtom(renderHelixes);
     const isFirefox = typeof window !== 'undefined' && window.navigator.userAgent.includes('Firefox');
 
     const helixStyles = rotated ? 'opacity-0' : 'opacity-20';

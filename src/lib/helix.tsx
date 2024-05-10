@@ -5,17 +5,13 @@ import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 import { usePathname } from 'next/navigation';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 
-const renderHelixes = atom(typeof window !== 'undefined' && window.location.pathname !== '/');
-
-export const useHelixVisibility = () => {
-    return useAtom(renderHelixes);
-};
+export const renderHelixes = atom(typeof window !== 'undefined' && window.location.pathname !== '/');
 
 export function EnsureHelixesAreVisible() {
     const path = usePathname();
-    const [helixesVisible, setHelixesVisible] = useHelixVisibility();
+    const [helixesVisible, setHelixesVisible] = useAtom(renderHelixes);
     if (path !== '/' && !helixesVisible) setHelixesVisible(true);
 
     return null;
@@ -96,9 +92,7 @@ export function HelixAnimation({
     const hHeight = height / 2;
     const dHeight = height * 2;
 
-    const [helixesVisible] = useHelixVisibility();
-
-    const helixClasses = show && helixesVisible ? 'opacity-100' : 'opacity-0';
+    const helixesVisible = useAtomValue(renderHelixes);
 
     return (
         <svg
@@ -128,7 +122,7 @@ export function HelixAnimation({
                             'fill-transparent transition-all duration-300',
                             strokeColor,
                             groupHoverColor,
-                            helixClasses
+                            show && helixesVisible ? 'opacity-100' : 'opacity-0'
                         )}
                         d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
@@ -138,7 +132,7 @@ export function HelixAnimation({
                             'fill-transparent transition-all duration-300',
                             strokeColor,
                             groupHoverColor,
-                            helixClasses
+                            show && helixesVisible ? 'opacity-100' : 'opacity-0'
                         )}
                         d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
                         style={{ strokeWidth }}
