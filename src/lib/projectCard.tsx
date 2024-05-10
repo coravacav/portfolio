@@ -9,15 +9,15 @@ export type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
     return (
-        <article className="bg-neutral-900 rounded-lg shadow-md flex lg:flex-row flex-col justify-between overflow-hidden">
-            <div className="p-4 lg:p-6 flex-grow">
+        <article className="flex flex-col justify-between overflow-hidden rounded-lg bg-neutral-900 shadow-md lg:flex-row">
+            <div className="flex-grow p-4 lg:p-6">
                 <h3 className="text-lg font-bold text-white">{project.name}</h3>
-                <p className="mt-4 text-base text-neutral-300 whitespace-pre-line">{project.description}</p>
-                <div className="mt-6 flex gap-2 flex-wrap">
+                <p className="mt-4 whitespace-pre-line text-base text-neutral-300">{project.description}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
                     {project.tech.map((tech) => (
                         <span
                             key={tech}
-                            className="px-2 py-1 text-sm font-semibold text-neutral-100 bg-neutral-700 rounded-full"
+                            className="rounded-full bg-neutral-700 px-2 py-1 text-sm font-semibold text-neutral-100"
                         >
                             {tech}
                         </span>
@@ -28,10 +28,10 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <a
                     href={project.href}
                     target="_blank"
-                    className="pt-2 mb-4 sm:pt-4 sm:pb-2 lg:pb-0 lg:mb-0 lg:ml-8 lg:pt-0 lg:px-4 group whitespace-nowrap lg:border-l-2 border-t-2 lg:border-t-0 hover:border-hover transition-colors border-activatable flex items-center justify-center"
+                    className="group mb-4 flex items-center justify-center whitespace-nowrap border-t-2 border-activatable pt-2 transition-colors hover:border-hover sm:pb-2 sm:pt-4 lg:mb-0 lg:ml-8 lg:border-l-2 lg:border-t-0 lg:px-4 lg:pb-0 lg:pt-0"
                 >
                     <Helix groupHoverColor="group-hover:stroke-hover">
-                        <span className="text-white flex items-center">
+                        <span className="flex items-center text-white">
                             See it here
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="w-6 h-6"
+                                className="h-6 w-6"
                             >
                                 <path
                                     strokeLinecap="round"

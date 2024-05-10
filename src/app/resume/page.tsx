@@ -3,7 +3,7 @@ import { prose } from '@/styles/prose';
 import clsx from 'clsx';
 
 const Item = ({ children }) => (
-    <li className="px-2 py-1 text-sm font-semibold text-neutral-100 bg-neutral-700 rounded-full list-none">
+    <li className="list-none rounded-full bg-neutral-700 px-2 py-1 text-sm font-semibold text-neutral-100">
         {children}
     </li>
 );
@@ -16,11 +16,11 @@ export default function ProjectsPage() {
             description="My qualifications and experience."
         >
             <section>
-                <h2 className="p-2 -ml-2 bg-neutral-900 rounded-md">Experience</h2>
+                <h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Experience</h2>
                 <article>
-                    <h3 className="p-2 -ml-2 bg-neutral-900/50 rounded-md">
+                    <h3 className="-ml-2 rounded-md bg-neutral-900/50 p-2">
                         Senior Design System Engineer{' '}
-                        <span className="text-neutral-500 inline-block">
+                        <span className="inline-block text-neutral-500">
                             / Auction Technology Group (9/2023 - Present)
                         </span>
                     </h3>
@@ -37,9 +37,9 @@ export default function ProjectsPage() {
                     </p>
                 </article>
                 <article>
-                    <h3 className="p-2 -ml-2 bg-neutral-900/50 rounded-md">
+                    <h3 className="-ml-2 rounded-md bg-neutral-900/50 p-2">
                         Software Developer{' '}
-                        <span className="text-neutral-500 inline-block">/ LiveAuctioneers (7/2019 – 9/2022)</span>
+                        <span className="inline-block text-neutral-500">/ LiveAuctioneers (7/2019 – 9/2022)</span>
                     </h3>
                     <p>
                         A React engineer creating solutions ranging from simply using the backend for API requests or
@@ -50,9 +50,9 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2 className="p-2 -ml-2 bg-neutral-900 rounded-md">Proficient Technologies</h2>
+                    <h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Proficient Technologies</h2>
                     <div className="not-prose">
-                        <ul className="flex flex-wrap gap-3 not-prose">
+                        <ul className="not-prose flex flex-wrap gap-3">
                             <Item>React</Item>
                             <Item>Javascript</Item>
                             <Item>Typescript</Item>
@@ -75,10 +75,12 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2 className="p-2 -ml-2 bg-neutral-900 rounded-md">Ceritifcations</h2>
-                    <p>A lot of these do not show value. Hence why I'm missing them for the languages I use daily</p>
+                    <h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Ceritifcations</h2>
+                    <p>
+                        A lot of these do not show value. Hence why I&apos;m missing them for the languages I use daily
+                    </p>
                     <div className="not-prose">
-                        <ul className="flex flex-wrap gap-3 not-prose">
+                        <ul className="not-prose flex flex-wrap gap-3">
                             <Item>Java</Item>
                             <Item>Python</Item>
                             <Item>C#</Item>
@@ -93,11 +95,11 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2 className="p-2 -ml-2 bg-neutral-900 rounded-md">Education</h2>
+                    <h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Education</h2>
 
-                    <h3 className="p-2 -ml-2 bg-neutral-900/50 rounded-md">
+                    <h3 className="-ml-2 rounded-md bg-neutral-900/50 p-2">
                         University of Utah{' '}
-                        <span className="text-neutral-500 inline-block">/ Bachelors of Computer Science</span>
+                        <span className="inline-block text-neutral-500">/ Bachelors of Computer Science</span>
                     </h3>
                     <p>
                         Wrote a compiler from lexer to assembly involving both low and high level optimizations and type
@@ -111,10 +113,10 @@ export default function ProjectsPage() {
             </section>
             <section>
                 <article>
-                    <h2 className="p-2 -ml-2 bg-neutral-900 rounded-md">Fun facts</h2>
+                    <h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Fun facts</h2>
                     <ul>
                         <li>Bilingual with English and Bulgarian</li>
-                        <li>I got my first programming book at 6 years old. Good ol' Java 8 OOP.</li>
+                        <li>I got my first programming book at 6 years old. Good ol&apos; Java 8 OOP.</li>
                     </ul>
                 </article>
             </section>

@@ -38,7 +38,10 @@ export default function ProjectsPage() {
             description="A list of projects I've worked on, and a little bit about them."
         >
             {projects.map((project) => (
-                <ProjectCard key={project.name} project={project} />
+                <ProjectCard
+                    key={project.name}
+                    project={project}
+                />
             ))}
         </PageContainer>
     );

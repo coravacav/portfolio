@@ -18,7 +18,7 @@ const navigation = [
 const Name = ({ hide = false }) => (
     <Link
         href="/"
-        className="-m-1.5 p-1.5 text-white font-semibold text-2xl 2xl:text-3xl group hover:text-hover transition-colors"
+        className="group -m-1.5 p-1.5 text-2xl font-semibold text-white transition-colors hover:text-hover 2xl:text-3xl"
     >
         <Helix
             height={16}
@@ -40,7 +40,7 @@ export default function Nav() {
     const pathName = usePathname();
 
     return (
-        <header className="bg-neutral-900 border-b-2 border-b-neutral-900 -ml-[calc(100vw-100%)] pl-[calc(100vw-100%)] print:hidden">
+        <header className="-ml-[calc(100vw-100%)] border-b-2 border-b-neutral-900 bg-neutral-900 pl-[calc(100vw-100%)] print:hidden">
             <nav
                 className={clsx('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
                 aria-label="Global"
@@ -55,7 +55,10 @@ export default function Nav() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        <Bars3Icon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                        />
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
@@ -63,7 +66,7 @@ export default function Nav() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-hover transition-colors"
+                            className="group text-base font-semibold leading-6 text-white transition-colors hover:text-hover 2xl:text-xl"
                         >
                             <Helix
                                 height={12}
@@ -84,7 +87,7 @@ export default function Nav() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <Link
                         href="/contact"
-                        className="text-base 2xl:text-xl font-semibold leading-6 text-white group hover:text-hover transition-colors"
+                        className="group text-base font-semibold leading-6 text-white transition-colors hover:text-hover 2xl:text-xl"
                     >
                         <Helix
                             height={12}
@@ -92,7 +95,7 @@ export default function Nav() {
                             groupHoverColor="group-hover:stroke-hover"
                             strokeColor={pathName === '/contact' ? 'stroke-active' : undefined}
                         >
-                            <span className="flex align-middle gap-2 ">
+                            <span className="flex gap-2 align-middle ">
                                 Contact
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +103,7 @@ export default function Nav() {
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="w-6 h-6"
+                                    className="h-6 w-6"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -113,7 +116,12 @@ export default function Nav() {
                     </Link>
                 </div>
             </nav>
-            <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+            <Dialog
+                as="div"
+                className="lg:hidden"
+                open={mobileMenuOpen}
+                onClose={setMobileMenuOpen}
+            >
                 <div className="fixed inset-0 z-10" />
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-neutral-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10 ">
                     <div className="flex items-center justify-between">
@@ -124,7 +132,10 @@ export default function Nav() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            <XMarkIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                            />
                         </button>
                     </div>
                     <div className="mt-6 flow-root">

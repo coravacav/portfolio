@@ -112,12 +112,20 @@ export function HelixAnimation({
                 style,
             })}
         >
-            <rect {...styles} style={{ fill }} />
+            <rect
+                {...styles}
+                style={{ fill }}
+            />
             <defs>
-                <pattern id={patternId} width={height} height={height} patternUnits="userSpaceOnUse">
+                <pattern
+                    id={patternId}
+                    width={height}
+                    height={height}
+                    patternUnits="userSpaceOnUse"
+                >
                     <path
                         className={clsx(
-                            'transition-all duration-300 fill-transparent',
+                            'fill-transparent transition-all duration-300',
                             strokeColor,
                             groupHoverColor,
                             helixClasses
@@ -127,7 +135,7 @@ export function HelixAnimation({
                     />
                     <path
                         className={clsx(
-                            'transition-all duration-300 fill-transparent',
+                            'fill-transparent transition-all duration-300',
                             strokeColor,
                             groupHoverColor,
                             helixClasses
@@ -164,6 +172,7 @@ export default function Helix({
             {children}
             <Transition
                 show={renderHelix}
+                as="div"
                 enter="transition-opacity duration-[4s] ease-out"
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
@@ -186,9 +195,8 @@ function generateSvgStyles({ extendLeft, extendRight, style }) {
     };
 
     if (style !== 'none') {
-        svgStyles[
-            'WebkitMaskImage'
-        ] = `linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
+        svgStyles['WebkitMaskImage'] =
+            `linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
         svgStyles['WebkitMaskSize'] = '100% 50%';
         svgStyles['WebkitMaskRepeat'] = 'no-repeat';
 

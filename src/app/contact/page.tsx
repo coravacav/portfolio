@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Card = ({ children }) => {
     return (
-        <div className="relative rounded-2xl bg-neutral-900 p-10 overflow-hidden group">
+        <div className="group relative overflow-hidden rounded-2xl bg-neutral-900 p-10">
             {children}
 
             <HelixAnimation
@@ -16,7 +16,7 @@ const Card = ({ children }) => {
                 svgWidth="100%"
             />
             <HelixAnimation
-                className="absolute top-0 left-0 right-0"
+                className="absolute left-0 right-0 top-0"
                 strokeColor="stroke-light/10"
                 groupHoverColor="group-hover:stroke-active/20"
                 duration={3000}
@@ -48,7 +48,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">Email</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-hover hover:text-active transition-colors"
+                                        className="font-semibold text-hover transition-colors hover:text-active"
                                         href="mailto:stefan@stefanbt.com"
                                     >
                                         stefan@stefanbt.com
@@ -59,7 +59,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">LinkedIn</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-hover hover:text-active transition-colors"
+                                        className="font-semibold text-hover transition-colors hover:text-active"
                                         target="_blank"
                                         href="https://www.linkedin.com/in/stefanbt/"
                                     >
@@ -71,7 +71,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-semibold leading-7 text-white">GitHub</h3>
                                 <div className="mt-3 space-y-1 text-base leading-6 text-neutral-300">
                                     <Link
-                                        className="font-semibold text-hover hover:text-active transition-colors"
+                                        className="font-semibold text-hover transition-colors hover:text-active"
                                         href="https://github.com/coravacav"
                                         target="_blank"
                                     >

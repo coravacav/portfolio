@@ -6,10 +6,13 @@ import Link from 'next/link';
 export default function BlogPostLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className={thinPageWidth}>
-            <nav aria-label="Blog Navigation" className={clsx('flex relative mx-auto justify-between')}>
+            <nav
+                aria-label="Blog Navigation"
+                className={clsx('relative mx-auto flex justify-between')}
+            >
                 <Link
                     href="/blog"
-                    className="my-4 text-base 2xl:text-xl font-semibold leading-6 text-white group hover:bg-neutral-900/50 transition-colors flex items-center gap-2 bg-neutral-900 rounded-lg p-2"
+                    className="group my-4 flex items-center gap-2 rounded-lg bg-neutral-900 p-2 text-base font-semibold leading-6 text-white transition-colors hover:bg-neutral-900/50 2xl:text-xl"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +20,7 @@ export default function BlogPostLayout({ children }: { children: React.ReactNode
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="h-6 w-6"
                     >
                         <path
                             strokeLinecap="round"

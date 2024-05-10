@@ -13,7 +13,7 @@ export default function FirefoxAnimationWarning() {
 
     return (
         <div
-            className="fixed bottom-0 right-0 p-2 rounded-t rounded-l text-xs bg-neutral-900 text-neutral-300 z-10 border-t-2 border-l-2 border-neutral-950"
+            className="fixed bottom-0 right-0 z-10 rounded-l rounded-t border-l-2 border-t-2 border-neutral-950 bg-neutral-900 p-2 text-xs text-neutral-300"
             title="It's not the website having a problem."
         >
             If you notice stuttering, Firefox has trouble rendering animations

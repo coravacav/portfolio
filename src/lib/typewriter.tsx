@@ -46,7 +46,7 @@ export default function Typewriter({
         if (typewriterTextIndex >= text.length) {
             onFinished?.();
         }
-    }, [typewriterTextIndex]);
+    }, [onFinished, text.length, typewriterTextIndex]);
 
     return (
         <>
