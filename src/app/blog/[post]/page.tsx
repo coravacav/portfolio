@@ -1,10 +1,18 @@
-import { pageWidth } from '@/styles/pageWidth';
+import { notFound } from 'next/navigation';
 
-export default function BlogPost({ params: { post } }: { params: { post: string } }) {
-    const Component = require(`../../../../articles/${post}.mdx`).default;
-    return (
-        <>
-            <Component />
-        </>
-    );
+export default async function BlogPost({ params }) {
+    try {
+        const post = (await params).post;
+        const path = `../../../../articles/${post}.mdx`;
+
+        const { default: Component, frontmatter } = await require(path);
+
+        if (frontmatter.draft !== false) {
+            notFound();
+        }
+
+        return <Component />;
+    } catch {
+        notFound();
+    }
 }

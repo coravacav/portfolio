@@ -9,7 +9,9 @@ export default async function BlogPage() {
                 .readdirSync('articles')
                 .map(async (filename) => (await import('../../../articles/' + filename)).frontmatter)
         )
-    ).filter(Boolean);
+    )
+        .filter(Boolean)
+        .filter(({ draft }) => draft === false);
 
     return (
         <PageContainer
