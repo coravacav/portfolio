@@ -5,7 +5,7 @@ export default async function BlogPost({ params }) {
 		const post = (await params).post;
 		const path = `../../../../articles/${post}.mdx`;
 
-		const { default: Component, frontmatter } = await require(path);
+		const { default: Component, frontmatter } = await import(path);
 
 		if (frontmatter.draft !== false) {
 			notFound();

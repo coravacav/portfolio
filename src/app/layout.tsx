@@ -1,7 +1,5 @@
 import Nav from '@/lib/nav';
 import { Inter } from 'next/font/google';
-import { EnsureHelixesAreVisible } from '@/lib/helix';
-import FirefoxAnimationWarning from '@/lib/firefoxAnimationWarning';
 import './app.css';
 
 // If loading a variable font, you don't need to specify the font weight
@@ -23,8 +21,6 @@ export default function RootLayout({ children }) {
 		>
 			<body className="relative bg-neutral-800 pb-10">
 				<Nav />
-				<EnsureHelixesAreVisible />
-				<FirefoxAnimationWarning />
 				{children}
 			</body>
 		</html>
