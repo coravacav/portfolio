@@ -6,52 +6,52 @@ const averageTimeout = 80;
 const deviation = 10;
 
 export default function Typewriter({
-    disable,
-    text,
-    onFinished,
+	disable,
+	text,
+	onFinished,
 }: {
-    disable?: boolean;
-    text: string;
-    onFinished?: () => void;
+	disable?: boolean;
+	text: string;
+	onFinished?: () => void;
 }) {
-    const [typewriterTextIndex, setTypewriterTextIndex] = useState(disable ? text.length : 0);
+	const [typewriterTextIndex, setTypewriterTextIndex] = useState(disable ? text.length : 0);
 
-    useEffect(() => {
-        let timeoutId;
+	useEffect(() => {
+		let timeoutId;
 
-        const typeNextChar = () => {
-            setTypewriterTextIndex((oldIndex) => {
-                clearTimeout(timeoutId);
-                const newIndex = oldIndex + 1;
+		const typeNextChar = () => {
+			setTypewriterTextIndex((oldIndex) => {
+				clearTimeout(timeoutId);
+				const newIndex = oldIndex + 1;
 
-                if (newIndex < text.length) {
-                    let timeout = Math.random() * deviation + averageTimeout;
-                    // Pause extra on a newline
-                    if (text[newIndex - 1] === '\n') {
-                        timeout += 1000;
-                    }
-                    timeoutId = setTimeout(typeNextChar, timeout);
-                }
+				if (newIndex < text.length) {
+					let timeout = Math.random() * deviation + averageTimeout;
+					// Pause extra on a newline
+					if (text[newIndex - 1] === '\n') {
+						timeout += 1000;
+					}
+					timeoutId = setTimeout(typeNextChar, timeout);
+				}
 
-                return newIndex;
-            });
-        };
+				return newIndex;
+			});
+		};
 
-        timeoutId = setTimeout(typeNextChar, 200);
+		timeoutId = setTimeout(typeNextChar, 200);
 
-        return () => clearTimeout(timeoutId);
-    }, [text]);
+		return () => clearTimeout(timeoutId);
+	}, [text]);
 
-    useEffect(() => {
-        if (typewriterTextIndex >= text.length) {
-            onFinished?.();
-        }
-    }, [onFinished, text.length, typewriterTextIndex]);
+	useEffect(() => {
+		if (typewriterTextIndex >= text.length) {
+			onFinished?.();
+		}
+	}, [onFinished, text.length, typewriterTextIndex]);
 
-    return (
-        <>
-            <span className="whitespace-pre-line">{text.substring(0, typewriterTextIndex)}</span>
-            <span className="whitespace-pre-line text-transparent">{text.substring(typewriterTextIndex)}</span>
-        </>
-    );
+	return (
+		<>
+			<span className="whitespace-pre-line">{text.substring(0, typewriterTextIndex)}</span>
+			<span className="whitespace-pre-line text-transparent">{text.substring(typewriterTextIndex)}</span>
+		</>
+	);
 }

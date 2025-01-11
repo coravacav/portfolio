@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-active: #9381ff;
+  --color-hover: #ffa987;
+  --color-activatable: #a01a58;
+  --color-light: #f7ebe8;
+  --color-dark: #1e1e24;
+}
