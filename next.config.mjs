@@ -1,8 +1,4 @@
 import nextMDX from '@next/mdx';
-import remarkGfm from 'remark-gfm';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import bundleAnalyzer from '@next/bundle-analyzer';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -16,13 +12,21 @@ const nextConfig = {
 const withMDX = nextMDX({
 	extension: /\.mdx?$/,
 	options: {
-		remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm],
-		rehypePlugins: [['@mapbox/rehype-prism', { strict: true, throwOnError: true }]],
+		remarkPlugins: [['remark-frontmatter'], ['remark-mdx-frontmatter'], ['remark-gfm']],
+		rehypePlugins: [
+			[
+				'@shikijs/rehype',
+				{
+					inline: 'tailing-curly-colon',
+					theme: 'aurora-x',
+				},
+			],
+		],
 	},
 });
 
-const withBundleAnalyzer = bundleAnalyzer({
-	enabled: process.env.ANALYZE === 'true',
-});
+// const withBundleAnalyzer = bundleAnalyzer({
+// 	enabled: process.env.ANALYZE === 'true',
+// });
 
-export default withBundleAnalyzer(withMDX(nextConfig));
+export default withMDX(nextConfig);

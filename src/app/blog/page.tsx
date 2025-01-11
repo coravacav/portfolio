@@ -5,7 +5,10 @@ import PageContainer from '@/lib/pageContainer';
 export default async function BlogPage() {
 	const posts = (
 		await Promise.all(
-			fs.readdirSync('articles').map(async (filename) => (await import('../../../articles/' + filename)).frontmatter)
+			fs.readdirSync('articles').map(async (filename) => ({
+				...(await import('../../../articles/' + filename)).frontmatter,
+				href: `blog/${filename.replace('.mdx', '')}`,
+			}))
 		)
 	)
 		.filter(Boolean)
@@ -17,7 +20,7 @@ export default async function BlogPage() {
 			className="grid gap-x-8 gap-y-16 p-4 lg:grid-cols-2"
 			description="I write about things I like, things I don't like, and things I'm learning."
 		>
-			{posts.map(({ href = '', title = '', description = '', date, datetime }) => (
+			{posts.map(({ href, title = '', description = '', date, datetime }) => (
 				<Link
 					href={href}
 					key={title}
