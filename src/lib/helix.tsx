@@ -131,8 +131,6 @@ export default function Helix({
 	const [contentRef, bounds] = useMeasure();
 	const [renderHelix, setRenderHelix] = useState(false);
 
-	console.log(bounds);
-
 	return (
 		<div
 			className={clsx('relative w-min whitespace-nowrap', { inline })}
