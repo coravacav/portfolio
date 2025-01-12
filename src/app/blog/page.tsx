@@ -12,7 +12,7 @@ export default async function BlogPage() {
 		)
 	)
 		.filter(Boolean)
-		.filter(({ draft }) => draft === false);
+		.filter(({ draft }) => process.env.NODE_ENV === 'development' || draft === false);
 
 	return (
 		<PageContainer

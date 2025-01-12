@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 		)
 	)
 		.filter(Boolean)
-		.filter(({ draft }) => draft === false)
+		.filter(({ draft }) => process.env.NODE_ENV === 'development' || draft === false)
 		.map((post) => ({ post: post.filename }));
 }
 
@@ -19,7 +19,7 @@ export default async function BlogPost({ params }) {
 	const post: string = (await params).post;
 	const { default: Component, frontmatter } = await import(`../../../../articles/${post}.mdx`);
 
-	if (frontmatter.draft !== false) {
+	if (process.env.NODE_ENV === 'production' && frontmatter.draft !== false) {
 		notFound();
 	}
 
