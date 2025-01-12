@@ -17,8 +17,15 @@ export default function ProjectsPage() {
 				<h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Experience</h2>
 				<article>
 					<h3 className="-ml-2 rounded-md bg-neutral-900/50 p-2">
+						Software Developer <span className="inline-block text-neutral-500">/ Epic Systems (6/2024 - Present)</span>
+					</h3>
+					<p>The healthcare company.</p>
+					<p>M</p>
+				</article>
+				<article>
+					<h3 className="-ml-2 rounded-md bg-neutral-900/50 p-2">
 						Senior Design System Engineer{' '}
-						<span className="inline-block text-neutral-500">/ Auction Technology Group (9/2023 - Present)</span>
+						<span className="inline-block text-neutral-500">/ Auction Technology Group (9/2023 - 5/2024)</span>
 					</h3>
 					<p>Primary maintainer and developer for a multi company design system / software library.</p>
 					<p>
