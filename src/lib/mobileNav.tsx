@@ -45,10 +45,9 @@ export default function MobileNav({ mobileMenuOpen, setMobileMenuOpen }) {
 							))}
 						</div>
 						<HelixAnimation
-							svgWidth="calc(100% + 3rem)"
 							style="none"
 							className="-mx-6"
-							strokeColor="stroke-activatable/60"
+							strokeStyles="stroke-activatable/60"
 						/>
 						<div className="py-6">
 							<Link

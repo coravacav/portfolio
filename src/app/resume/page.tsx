@@ -1,6 +1,6 @@
+import { cn } from '@/lib/cn';
 import PageContainer from '@/lib/pageContainer';
 import { prose } from '@/styles/prose';
-import clsx from 'clsx';
 
 const Item = ({ children }) => (
 	<li className="list-none rounded-full bg-neutral-700 px-2 py-1 text-sm font-semibold text-neutral-100">{children}</li>
@@ -10,7 +10,7 @@ export default function ProjectsPage() {
 	return (
 		<PageContainer
 			title="Resume"
-			className={clsx('print:not-prose', prose)}
+			className={cn('print:not-prose', prose)}
 			description="My qualifications and experience."
 		>
 			<section>

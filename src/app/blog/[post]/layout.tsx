@@ -1,6 +1,6 @@
+import { cn } from '@/lib/cn';
 import { thinPageWidth } from '@/styles/pageWidth';
 import { proseSection } from '@/styles/prose';
-import clsx from 'clsx';
 import Link from 'next/link';
 
 export default function BlogPostLayout({ children }: { children: React.ReactNode }) {
@@ -8,7 +8,7 @@ export default function BlogPostLayout({ children }: { children: React.ReactNode
 		<div className={thinPageWidth}>
 			<nav
 				aria-label="Blog Navigation"
-				className={clsx('relative mx-auto flex justify-between')}
+				className={cn('relative mx-auto flex justify-between')}
 			>
 				<Link
 					href="/blog"
@@ -31,7 +31,7 @@ export default function BlogPostLayout({ children }: { children: React.ReactNode
 					Back to all blog posts
 				</Link>
 			</nav>
-			<article className={clsx('', proseSection)}>{children}</article>
+			<article className={cn('', proseSection)}>{children}</article>
 		</div>
 	);
 }

@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { cn } from './cn';
 
 const MobileNav = dynamic(() => import('./mobileNav'));
 
@@ -25,12 +25,9 @@ export const Name = ({ hide = false }) => (
 		<Helix
 			height={16}
 			show={!hide}
-			extendLeft={10}
-			extendRight={10}
 			style="none"
-			strokeColor="stroke-activatable/60"
-			className="lg:hidden"
-			groupHoverColor="group-hover:stroke-hover"
+			strokeStyles="stroke-activatable/60 stroke-[1.5px]"
+			className="right-[-10px] left-[-10px] w-[calc(100%+20px)] lg:hidden"
 		>
 			Stefan Todorov
 		</Helix>
@@ -44,7 +41,7 @@ export default function Nav() {
 	return (
 		<header className="border-b-2 border-b-neutral-900 bg-neutral-900 print:hidden">
 			<nav
-				className={clsx('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
+				className={cn('mx-auto flex items-center justify-between py-6 2xl:py-8', pageWidth)}
 				aria-label="Global"
 			>
 				<div className="flex lg:flex-1">
@@ -64,27 +61,27 @@ export default function Nav() {
 					</button>
 				</div>
 				<div className="hidden lg:flex lg:gap-x-12">
-					{navigation.map((item) => (
-						<Link
-							key={item.name}
-							href={item.href}
-							className="group hover:text-hover text-base leading-6 font-semibold text-white transition-colors 2xl:text-xl"
-						>
-							<Helix
-								height={12}
-								extendLeft={5}
-								extendRight={5}
-								strokeColor={
-									pathName == item.href || (item.href.length > 1 && pathName.startsWith(item.href))
-										? 'stroke-active'
-										: undefined
-								}
-								groupHoverColor="group-hover:stroke-hover"
+					{navigation.map((item) => {
+						const active = pathName == item.href || (item.href.length > 1 && pathName.startsWith(item.href));
+
+						return (
+							<Link
+								key={item.name}
+								href={item.href}
+								className="group hover:text-hover text-base leading-6 font-semibold text-white transition-colors 2xl:text-xl"
 							>
-								{item.name}
-							</Helix>
-						</Link>
-					))}
+								<Helix
+									height={12}
+									className="right-[-5px] left-[-5px] w-[calc(100%+10px)]"
+									strokeStyles={cn({
+										'stroke-active': active,
+									})}
+								>
+									{item.name}
+								</Helix>
+							</Link>
+						);
+					})}
 				</div>
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 					<Link
@@ -94,8 +91,8 @@ export default function Nav() {
 						<Helix
 							height={12}
 							style="topleft"
-							groupHoverColor="group-hover:stroke-hover"
-							strokeColor={pathName === '/contact' ? 'stroke-active' : undefined}
+							className="right-[-5px] left-[-5px] w-[calc(100%+10px)]"
+							strokeStyles={pathName === '/contact' ? 'stroke-active' : undefined}
 						>
 							<span className="flex gap-2 align-middle">
 								Contact

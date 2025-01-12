@@ -2,9 +2,55 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  --color-active: #9381ff;
-  --color-hover: #ffa987;
-  --color-activatable: #a01a58;
-  --color-light: #f7ebe8;
-  --color-dark: #1e1e24;
+	--color-active: #9381ff;
+	--color-hover: #ffa987;
+	--color-activatable: #a01a58;
+	--color-light: #f7ebe8;
+	--color-dark: #1e1e24;
+
+	--animate-helix-left: helix-left 1s linear infinite;
+	@keyframes helix-left {
+		to {
+			transform: translateX(-12px);
+		}
+	}
+
+	--animate-helix-right: helix-right 1s linear infinite;
+	@keyframes helix-right {
+		from {
+			transform: translateX(-12px);
+		}
+	}
+}
+
+/* Base styles for the mask */
+.svg-mask {
+	mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+		linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	mask-size: 100% 50%;
+	mask-repeat: no-repeat;
+}
+
+/* Style for 'topright' */
+.svg-mask-topright {
+	mask-position:
+		left top,
+		right bottom;
+}
+
+/* Style for 'topleft' */
+.svg-mask-topleft {
+	mask-position:
+		left bottom,
+		right top;
+}
+
+.fade-in {
+	transition-property: opacity;
+	transition-duration: 1s;
+	opacity: 1;
+
+	@starting-style {
+		opacity: 0;
+	}
 }

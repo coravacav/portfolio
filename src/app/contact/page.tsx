@@ -5,24 +5,19 @@ const Card = ({ children }) => {
 	return (
 		<div className="group relative overflow-hidden rounded-2xl bg-neutral-900 p-10">
 			{children}
-
 			<HelixAnimation
-				className="absolute right-0 bottom-0 left-0"
-				strokeColor="stroke-light/10"
-				groupHoverColor="group-hover:stroke-active/20"
-				duration={3000}
-				height={20}
+				className="absolute right-0 bottom-0 left-0 w-full"
+				rectStyles="scale-150"
+				height={18}
+				strokeStyles="stroke-light/10 group-hover:stroke-active/20 stroke-[1.5px]"
 				style="none"
-				svgWidth="100%"
 			/>
 			<HelixAnimation
-				className="absolute top-0 right-0 left-0"
-				strokeColor="stroke-light/10"
-				groupHoverColor="group-hover:stroke-active/20"
-				duration={3000}
-				height={20}
+				className="absolute top-0 right-0 left-0 w-full"
+				rectStyles="scale-150"
+				height={18}
+				strokeStyles="stroke-light/10 group-hover:stroke-active/20 stroke-[1.5px]"
 				style="none"
-				svgWidth="100%"
 				direction="right"
 			/>
 		</div>

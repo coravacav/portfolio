@@ -1,118 +1,70 @@
-'use client';
-
-import useMeasure from 'react-use-measure';
-import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
-import clsx from 'clsx';
-import { Transition } from '@headlessui/react';
+import { ReactNode, useId } from 'react';
+import { cn } from './cn';
 
 type HelixAnimationProps = {
 	show?: boolean;
-	duration?: number;
 	style?: 'topright' | 'topleft' | 'none';
-	strokeColor?: string;
-	groupHoverColor?: string;
+	strokeStyles?: string;
+	rectStyles?: string;
 	className?: string;
-	strokeWidth?: string;
 	height?: number;
 	direction?: 'left' | 'right';
-	svgWidth?: number | string;
-	extendLeft?: number;
-	extendRight?: number;
-	svgHeight?: number;
 };
 
 export function HelixAnimation({
-	show = true,
 	className,
-	svgWidth,
 	height = 10,
-	strokeColor = 'stroke-activatable',
-	groupHoverColor,
+	strokeStyles,
 	direction = 'left',
-	duration = 1000,
-	extendLeft = 0,
-	extendRight = 0,
+	rectStyles,
 	style = 'topright',
-	strokeWidth = '1.5px',
 }: HelixAnimationProps) {
-	const [svgRef, setSvgRef] = useState<SVGSVGElement | null>(null);
-
 	const patternId = useId();
 	const fill = `url(#${patternId})`;
 
-	const styles = {
-		height: height + 'px',
-	};
-
-	if (svgWidth) {
-		if (typeof svgWidth === 'string') {
-			styles['width'] = svgWidth;
-		} else {
-			styles['width'] = svgWidth + extendLeft + extendRight;
-		}
-	}
-
-	useEffect(() => {
-		if (!svgRef) return;
-		if (!show) return;
-
-		const newspaperSpinning =
-			direction === 'left'
-				? [{ transform: 'translateX(0)' }, { transform: `translateX(-${height}px)` }]
-				: [{ transform: `translateX(-${height}px)` }, { transform: 'translateX(0)' }];
-		const newspaperTiming: KeyframeAnimationOptions = {
-			duration,
-			easing: 'linear',
-			iterations: Infinity,
-		};
-
-		const newspapers = svgRef.querySelectorAll('path');
-
-		const animations: Animation[] = [];
-
-		newspapers.forEach((newspaper) => animations.push(newspaper.animate(newspaperSpinning, newspaperTiming)));
-
-		return () => {
-			animations.forEach((animation) => animation.cancel());
-		};
-	}, [height, duration, show, svgRef, direction]);
-
-	const hHeight = height / 2;
-	const dHeight = height * 2;
+	const pathStyles = cn(
+		'fill-transparent transition-all duration-300 stroke-activatable group-hover:stroke-hover stroke-[1.5px]',
+		{
+			'animate-helix-left': direction === 'left',
+			'animate-helix-right': direction === 'right',
+		},
+		strokeStyles
+	);
 
 	return (
 		<svg
-			{...styles}
-			className={clsx('print:hidden', className)}
+			style={{
+				height: height + 'px',
+			}}
+			className={cn(
+				'h-full w-full print:hidden',
+				{
+					'svg-mask svg-mask-topright': style === 'topright',
+					'svg-mask svg-mask-topleft': style === 'topleft',
+				},
+				className
+			)}
 			role="none"
-			ref={setSvgRef}
-			style={generateSvgStyles({
-				extendLeft,
-				extendRight,
-				style,
-			})}
 		>
 			<rect
-				{...styles}
+				className={cn('h-full w-full', rectStyles)}
 				style={{ fill }}
 			/>
 			<defs>
 				<pattern
 					id={patternId}
-					width={height}
-					height={height}
+					width={12}
+					height="100%"
 					patternUnits="userSpaceOnUse"
 				>
 					<path
-						className={clsx('fill-transparent transition-all duration-300', strokeColor, groupHoverColor)}
-						d={`M 0 ${hHeight} Q ${hHeight} 0 ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-						style={{ strokeWidth }}
-					/>
+						className={pathStyles}
+						d="M 0 6 Q 6 0 12 6 T 24 6"
+					></path>
 					<path
-						className={clsx('fill-transparent transition-all duration-300', strokeColor, groupHoverColor)}
-						d={`M 0 ${hHeight} Q ${hHeight} ${height} ${height} ${hHeight} T ${dHeight} ${hHeight}`}
-						style={{ strokeWidth }}
-					/>
+						className={pathStyles}
+						d="M 0 6 Q 6 12 12 6 T 24 6"
+					></path>
 				</pattern>
 			</defs>
 		</svg>
@@ -122,60 +74,17 @@ export function HelixAnimation({
 export default function Helix({
 	className,
 	children,
-	inline = false,
 	...rest
 }: {
 	children: ReactNode;
-	inline?: boolean;
 } & HelixAnimationProps) {
-	const [contentRef, bounds] = useMeasure();
-	const [renderHelix, setRenderHelix] = useState(false);
-
 	return (
-		<div
-			className={clsx('relative w-min whitespace-nowrap', { inline })}
-			ref={(ref) => {
-				contentRef(ref);
-				setRenderHelix(true);
-			}}
-		>
+		<div className={'relative w-min whitespace-nowrap'}>
 			{children}
-			<Transition
-				show={renderHelix}
-				as="div"
-				enter="transition-opacity duration-[4s] ease-out"
-				enterFrom="opacity-0"
-				enterTo="opacity-100"
-			>
-				<HelixAnimation
-					className={clsx('absolute top-full', className)}
-					show={renderHelix}
-					svgWidth={bounds.width}
-					{...rest}
-				/>
-			</Transition>
+			<HelixAnimation
+				className={cn('fade-in absolute top-full', className)}
+				{...rest}
+			/>
 		</div>
 	);
-}
-
-function generateSvgStyles({ extendLeft, extendRight, style }) {
-	const svgStyles: CSSProperties = {
-		left: -extendLeft + 'px',
-		right: -extendRight + 'px',
-	};
-
-	if (style !== 'none') {
-		svgStyles['WebkitMaskImage'] =
-			`linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))`;
-		svgStyles['WebkitMaskSize'] = '100% 50%';
-		svgStyles['WebkitMaskRepeat'] = 'no-repeat';
-
-		if (style === 'topright') {
-			svgStyles['WebkitMaskPosition'] = 'left top, right bottom';
-		} else if (style === 'topleft') {
-			svgStyles['WebkitMaskPosition'] = 'left bottom, right top';
-		}
-	}
-
-	return svgStyles;
 }

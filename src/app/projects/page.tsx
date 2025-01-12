@@ -1,8 +1,5 @@
-import { HelixAnimation } from '@/lib/helix';
 import PageContainer from '@/lib/pageContainer';
 import ProjectCard, { Project } from '@/lib/projectCard';
-import { pageTop, pageWidth } from '@/styles/pageWidth';
-import clsx from 'clsx';
 
 const projects: Project[] = [
 	{

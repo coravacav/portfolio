@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 					target="_blank"
 					className="group border-activatable hover:border-hover mb-4 flex items-center justify-center border-t-2 pt-2 whitespace-nowrap transition-colors sm:pt-4 sm:pb-2 lg:mb-0 lg:ml-8 lg:border-t-0 lg:border-l-2 lg:px-4 lg:pt-0 lg:pb-0"
 				>
-					<Helix groupHoverColor="group-hover:stroke-hover">
+					<Helix>
 						<span className="flex items-center text-white">
 							See it here
 							<svg
