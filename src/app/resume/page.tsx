@@ -59,8 +59,8 @@ export default function ProjectsPage() {
 							<Item>M</Item>
 							<Item>C#</Item>
 							<Item>React</Item>
-							<Item>Javascript</Item>
 							<Item>Typescript</Item>
+							<Item>Javascript</Item>
 							<Item>Redux</Item>
 							<Item>Webpack</Item>
 							<Item>CSS</Item>
