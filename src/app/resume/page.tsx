@@ -55,6 +55,9 @@ export default function ProjectsPage() {
 					<h2 className="-ml-2 rounded-md bg-neutral-900 p-2">Proficient Technologies</h2>
 					<div className="not-prose">
 						<ul className="not-prose flex flex-wrap gap-3">
+							<Item>Rust</Item>
+							<Item>M</Item>
+							<Item>C#</Item>
 							<Item>React</Item>
 							<Item>Javascript</Item>
 							<Item>Typescript</Item>
