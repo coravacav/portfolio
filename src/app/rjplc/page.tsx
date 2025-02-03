@@ -85,7 +85,7 @@ export default function RJPLCPage() {
 		<PageContainer
 			title="Rust JPL Compiler"
 			className="flex flex-col gap-y-2"
-			description="Badabing, badaboom."
+			description="Currently up to date with hw4"
 		>
 			<div>
 				<nav
