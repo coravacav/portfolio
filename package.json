@@ -31,7 +31,6 @@
 		"postcss": "^8.5.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"react-window": "^1.8.11",
 		"remark-frontmatter": "^5.0.0",
 		"remark-gfm": "^4.0.0",
 		"remark-mdx-frontmatter": "^4.0.0",

@@ -50,48 +50,22 @@ export default function RJPLCPage() {
 		if (compilerOutput === undefined) {
 			return <div className="text-sm font-semibold text-white">Enter some text on the left to get started.</div>;
 		} else if (compilerOutput?.lex_output.length > 0 && currentTab === 0) {
-			const lex = compilerOutput.lex_output.split('\n');
-			const Row = ({ index, style }) => (
-				<div
-					className="text-sm font-semibold whitespace-nowrap text-white"
-					style={style}
-				>
-					{lex[index]}
-				</div>
-			);
-
 			return (
-				<List
-					className="List"
-					height={500}
-					itemCount={lex.length}
-					itemSize={20}
-					width="100%"
-				>
-					{Row}
-				</List>
+				<Editor
+					height="500px"
+					defaultLanguage="javascript"
+					value={compilerOutput.lex_output}
+					theme="vs-dark"
+				/>
 			);
 		} else if (compilerOutput?.parse_output.length > 0 && currentTab === 1) {
-			const parse = compilerOutput.parse_output.split('\n');
-			const Row = ({ index, style }) => (
-				<div
-					className="text-sm font-semibold whitespace-nowrap text-white"
-					style={style}
-				>
-					{parse[index]}
-				</div>
-			);
-
 			return (
-				<List
-					className="List"
-					height={500}
-					itemCount={parse.length}
-					itemSize={20}
-					width="100%"
-				>
-					{Row}
-				</List>
+				<Editor
+					height="500px"
+					defaultLanguage="javascript"
+					value={compilerOutput.parse_output}
+					theme="vs-dark"
+				/>
 			);
 		} else {
 			return <div className="text-sm font-semibold text-white">No output</div>;
