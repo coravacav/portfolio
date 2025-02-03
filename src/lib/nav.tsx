@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
