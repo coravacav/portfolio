@@ -1,9 +1,10 @@
 'use client';
 
 import PageContainer from '@/lib/pageContainer';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import init, { perform_steps, Output } from 'rjplc-wasm';
+import { FixedSizeList as List } from 'react-window';
 
 const tabs = [
 	{
@@ -42,19 +43,59 @@ export default function RJPLCPage() {
 		}
 	}, [input, loaded]);
 
-	let content;
-
 	const validArray = [compilerOutput?.lex_success || false, compilerOutput?.parse_success || false];
 
-	if (compilerOutput === undefined) {
-		content = <div className="text-sm font-semibold text-white">Enter some text on the left to get started.</div>;
-	} else if (compilerOutput?.lex_output.length > 0 && currentTab === 0) {
-		content = <div className="text-sm font-semibold whitespace-pre-wrap text-white">{compilerOutput.lex_output}</div>;
-	} else if (compilerOutput?.parse_output.length > 0 && currentTab === 1) {
-		content = <div className="text-sm font-semibold whitespace-pre-wrap text-white">{compilerOutput.parse_output}</div>;
-	} else {
-		content = <div className="text-sm font-semibold text-white">No output</div>;
-	}
+	const content = useMemo(() => {
+		if (compilerOutput === undefined) {
+			return <div className="text-sm font-semibold text-white">Enter some text on the left to get started.</div>;
+		} else if (compilerOutput?.lex_output.length > 0 && currentTab === 0) {
+			const lex = compilerOutput.lex_output.split('\n');
+			const Row = ({ index, style }) => (
+				<div
+					className="text-sm font-semibold whitespace-nowrap text-white"
+					style={style}
+				>
+					{lex[index]}
+				</div>
+			);
+
+			return (
+				<List
+					className="List"
+					height={500}
+					itemCount={lex.length}
+					itemSize={20}
+					width="100%"
+				>
+					{Row}
+				</List>
+			);
+		} else if (compilerOutput?.parse_output.length > 0 && currentTab === 1) {
+			const parse = compilerOutput.parse_output.split('\n');
+			const Row = ({ index, style }) => (
+				<div
+					className="text-sm font-semibold whitespace-nowrap text-white"
+					style={style}
+				>
+					{parse[index]}
+				</div>
+			);
+
+			return (
+				<List
+					className="List"
+					height={500}
+					itemCount={parse.length}
+					itemSize={20}
+					width="100%"
+				>
+					{Row}
+				</List>
+			);
+		} else {
+			return <div className="text-sm font-semibold text-white">No output</div>;
+		}
+	}, [compilerOutput, currentTab]);
 
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -140,30 +181,45 @@ export default function RJPLCPage() {
 						</label>
 					</span>
 					<div>
-						<textarea
-							ref={textareaRef}
-							id="comment"
-							name="comment"
-							rows={4}
-							className="outline-activatable block max-h-[500px] w-full resize-none rounded-md bg-transparent px-3 py-1.5 text-base text-white outline-1 outline-offset-2 transition-colors placeholder:text-gray-400 focus:outline-2 sm:text-sm/6"
-							onChange={(e) => setInput(e.target.value)}
-							onPaste={async (e) => {
-								e.preventDefault();
-								let pastedData = e.clipboardData.getData('text');
-								if (pastedData) {
-									setInput(pastedData);
-								}
-								pastedData = await e.clipboardData.files[0]?.text();
-								if (pastedData) {
-									setInput(pastedData);
-								}
-							}}
-							value={input}
-							spellCheck={false}
-						/>
+						{input.length > 1_000_000 ? (
+							<div className="flex items-center text-sm font-semibold text-white">
+								Input too large to be able to edit
+								<button
+									className="ml-4 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+									onClick={() => setInput('')}
+								>
+									Clear Input
+								</button>
+							</div>
+						) : (
+							<textarea
+								ref={textareaRef}
+								id="comment"
+								name="comment"
+								rows={4}
+								className="outline-activatable block max-h-[500px] w-full resize-none rounded-md bg-transparent px-3 py-1.5 text-base text-white outline-1 outline-offset-2 transition-colors placeholder:text-gray-400 focus:outline-2 sm:text-sm/6"
+								onChange={(e) => setInput(e.target.value)}
+								onPaste={async (e) => {
+									e.preventDefault();
+									let pastedData = e.clipboardData.getData('text');
+									if (pastedData) {
+										setInput(pastedData);
+									}
+									pastedData = await e.clipboardData.files[0]?.text();
+									if (pastedData) {
+										setInput(pastedData);
+									}
+								}}
+								value={input}
+								spellCheck={false}
+								autoComplete="off"
+								autoCorrect="off"
+								autoCapitalize="off"
+							/>
+						)}
 					</div>
 				</div>
-				<div className="flex flex-col gap-y-4">
+				<div className="flex flex-col gap-y-2">
 					<label className="text-activatable block text-sm/6 font-medium">Compiler output</label>
 					<div className="flex max-h-[500px] gap-y-1 overflow-y-auto">{content}</div>
 				</div>
