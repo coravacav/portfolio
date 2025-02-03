@@ -81,7 +81,7 @@ export default function RJPLCPage() {
 			className="flex flex-col gap-y-2"
 			description="Badabing, badaboom."
 		>
-			<div className="hidden sm:block">
+			<div>
 				<nav
 					aria-label="Tabs"
 					className="isolate flex divide-x divide-neutral-950 rounded-lg shadow"
@@ -110,7 +110,7 @@ export default function RJPLCPage() {
 					))}
 				</nav>
 			</div>
-			<div className="grid grid-cols-2 gap-4">
+			<div className="flex flex-col gap-4 md:grid md:grid-cols-2">
 				<div>
 					<label
 						htmlFor="comment"
