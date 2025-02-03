@@ -4,7 +4,6 @@ import PageContainer from '@/lib/pageContainer';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import init, { perform_steps, Output } from 'rjplc-wasm';
-import { FixedSizeList as List } from 'react-window';
 import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 
 const tabs = [
@@ -56,15 +55,25 @@ export default function RJPLCPage() {
 					defaultLanguage="javascript"
 					value={compilerOutput.lex_output}
 					theme="vs-dark"
+					onMount={(editor, monaco) => {
+						editor.updateOptions({ wordWrap: 'on' });
+						monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+							noSemanticValidation: true,
+							noSyntaxValidation: true,
+						});
+					}}
 				/>
 			);
 		} else if (compilerOutput?.parse_output.length > 0 && currentTab === 1) {
 			return (
 				<Editor
 					height="500px"
-					defaultLanguage="javascript"
+					defaultLanguage="clojure"
 					value={compilerOutput.parse_output}
 					theme="vs-dark"
+					onMount={(editor) => {
+						editor.updateOptions({ wordWrap: 'on' });
+					}}
 				/>
 			);
 		} else {
@@ -162,6 +171,13 @@ export default function RJPLCPage() {
 							value={input}
 							theme="vs-dark"
 							onChange={(value) => setInput(value)}
+							onMount={(editor, monaco) => {
+								editor.updateOptions({ wordWrap: 'on' });
+								monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+									noSemanticValidation: true,
+									noSyntaxValidation: true,
+								});
+							}}
 						/>
 					</div>
 				</div>
