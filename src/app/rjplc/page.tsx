@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import init, { perform_steps, Output } from 'rjplc-wasm';
 import { FixedSizeList as List } from 'react-window';
+import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 
 const tabs = [
 	{
@@ -181,42 +182,13 @@ export default function RJPLCPage() {
 						</label>
 					</span>
 					<div>
-						{input.length > 1_000_000 ? (
-							<div className="flex items-center text-sm font-semibold text-white">
-								Input too large to be able to edit
-								<button
-									className="ml-4 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
-									onClick={() => setInput('')}
-								>
-									Clear Input
-								</button>
-							</div>
-						) : (
-							<textarea
-								ref={textareaRef}
-								id="comment"
-								name="comment"
-								rows={4}
-								className="outline-activatable block max-h-[500px] w-full resize-none rounded-md bg-transparent px-3 py-1.5 text-base text-white outline-1 outline-offset-2 transition-colors placeholder:text-gray-400 focus:outline-2 sm:text-sm/6"
-								onChange={(e) => setInput(e.target.value)}
-								onPaste={async (e) => {
-									e.preventDefault();
-									let pastedData = e.clipboardData.getData('text');
-									if (pastedData) {
-										setInput(pastedData);
-									}
-									pastedData = await e.clipboardData.files[0]?.text();
-									if (pastedData) {
-										setInput(pastedData);
-									}
-								}}
-								value={input}
-								spellCheck={false}
-								autoComplete="off"
-								autoCorrect="off"
-								autoCapitalize="off"
-							/>
-						)}
+						<Editor
+							height="500px"
+							defaultLanguage="javascript"
+							value={input}
+							theme="vs-dark"
+							onChange={(value) => setInput(value)}
+						/>
 					</div>
 				</div>
 				<div className="flex flex-col gap-y-2">
