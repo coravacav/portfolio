@@ -30,7 +30,13 @@ export default function RJPLCPage() {
 
 	useEffect(() => {
 		if (loaded && input.length > 0) {
-			setCompilerOutput(perform_steps(input));
+			let modified;
+			if (!input.endsWith('\n')) {
+				modified = input + '\n';
+			} else {
+				modified = input;
+			}
+			setCompilerOutput(perform_steps(modified));
 		}
 	}, [input, loaded]);
 
