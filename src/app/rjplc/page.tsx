@@ -52,15 +52,14 @@ export default function RJPLCPage() {
 			return (
 				<Editor
 					height="500px"
-					defaultLanguage="javascript"
 					value={compilerOutput.lex_output}
 					theme="vs-dark"
 					onMount={(editor, monaco) => {
 						editor.updateOptions({ wordWrap: 'on' });
-						monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-							noSemanticValidation: true,
-							noSyntaxValidation: true,
-						});
+						// monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+						// 	noSemanticValidation: true,
+						// 	noSyntaxValidation: true,
+						// });
 					}}
 				/>
 			);
@@ -167,16 +166,12 @@ export default function RJPLCPage() {
 					<div>
 						<Editor
 							height="500px"
-							defaultLanguage="javascript"
+							defaultLanguage="rust"
 							value={input}
 							theme="vs-dark"
 							onChange={(value) => setInput(value)}
 							onMount={(editor, monaco) => {
 								editor.updateOptions({ wordWrap: 'on' });
-								monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-									noSemanticValidation: true,
-									noSyntaxValidation: true,
-								});
 							}}
 						/>
 					</div>
