@@ -4,11 +4,14 @@ import PageContainer from '@/lib/pageContainer';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import init, { perform_steps, Output } from 'rjplc-wasm';
+import { Metadata } from 'next';
 
-export const metadata = {
-	title: "Stefan's Rust JPL Compiler",
-	description: 'Has a visual. Works, probably?',
-};
+export async function generateMetadata(): Promise<Metadata> {
+	return {
+		title: "Stefan's Rust JPL Compiler",
+		description: 'Has a visual. Works, probably?',
+	};
+}
 
 const tabs = [
 	{
