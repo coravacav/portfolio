@@ -119,6 +119,45 @@ export class Output {
         wasm.__wbg_output_free(ptr, 0);
     }
     /**
+     * @returns {boolean}
+     */
+    get lex_success() {
+        const ret = wasm.__wbg_get_output_lex_success(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {boolean} arg0
+     */
+    set lex_success(arg0) {
+        wasm.__wbg_set_output_lex_success(this.__wbg_ptr, arg0);
+    }
+    /**
+     * @returns {boolean}
+     */
+    get parse_success() {
+        const ret = wasm.__wbg_get_output_parse_success(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {boolean} arg0
+     */
+    set parse_success(arg0) {
+        wasm.__wbg_set_output_parse_success(this.__wbg_ptr, arg0);
+    }
+    /**
+     * @returns {boolean}
+     */
+    get type_check_success() {
+        const ret = wasm.__wbg_get_output_type_check_success(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {boolean} arg0
+     */
+    set type_check_success(arg0) {
+        wasm.__wbg_set_output_type_check_success(this.__wbg_ptr, arg0);
+    }
+    /**
      * @returns {string | undefined}
      */
     get lex_output() {

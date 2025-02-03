@@ -54,3 +54,19 @@
 		opacity: 0;
 	}
 }
+
+::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	@apply z-10 w-2;
+}
+
+::-webkit-scrollbar-track {
+	@apply rounded-full bg-neutral-700;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply rounded-full bg-neutral-500;
+}

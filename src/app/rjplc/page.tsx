@@ -37,39 +37,23 @@ export default function RJPLCPage() {
 				modified = input;
 			}
 			setCompilerOutput(perform_steps(modified));
+		} else {
+			setCompilerOutput(undefined);
 		}
 	}, [input, loaded]);
 
 	let content;
 
+	const validArray = [compilerOutput?.lex_success || false, compilerOutput?.parse_success || false];
+
 	if (compilerOutput === undefined) {
-		content = <span className="text-sm font-semibold text-white">Enter some text on the left to get started.</span>;
-	} else if (compilerOutput.lex_output.length > 0 && currentTab === 0) {
-		content = (
-			<div className="flex flex-col gap-y-2">
-				{compilerOutput.lex_output.split('\n').map((token, i) => (
-					<span
-						key={i}
-						className="text-sm font-semibold text-white"
-					>
-						{token}
-					</span>
-				))}
-			</div>
-		);
-	} else if (compilerOutput.parse_output.length > 0 && currentTab === 1) {
-		content = (
-			<div className="flex flex-col gap-y-2">
-				{compilerOutput.parse_output.split('\n').map((token, i) => (
-					<span
-						key={i}
-						className="text-sm font-semibold text-white"
-					>
-						{token}
-					</span>
-				))}
-			</div>
-		);
+		content = <div className="text-sm font-semibold text-white">Enter some text on the left to get started.</div>;
+	} else if (compilerOutput?.lex_output.length > 0 && currentTab === 0) {
+		content = <div className="text-sm font-semibold whitespace-pre-wrap text-white">{compilerOutput.lex_output}</div>;
+	} else if (compilerOutput?.parse_output.length > 0 && currentTab === 1) {
+		content = <div className="text-sm font-semibold whitespace-pre-wrap text-white">{compilerOutput.parse_output}</div>;
+	} else {
+		content = <div className="text-sm font-semibold text-white">No output</div>;
 	}
 
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -105,6 +89,17 @@ export default function RJPLCPage() {
 							onClick={() => setCurrentTab(tab.idx)}
 						>
 							<span>{tab.name}</span>
+							{compilerOutput === undefined ? null : validArray[tab.idx] ? (
+								<span
+									aria-hidden="true"
+									className={'absolute inset-x-[10%] top-0 h-0.25 bg-green-400'}
+								/>
+							) : (
+								<span
+									aria-hidden="true"
+									className={'absolute inset-x-[10%] top-0 h-0.25 bg-red-400'}
+								/>
+							)}
 							<span
 								aria-hidden="true"
 								className={cn(
@@ -116,22 +111,53 @@ export default function RJPLCPage() {
 					))}
 				</nav>
 			</div>
-			<div className="flex flex-col gap-4 md:grid md:grid-cols-2">
-				<div>
-					<label
-						htmlFor="comment"
-						className="text-activatable block text-sm/6 font-medium"
-					>
-						Add your JPL source
-					</label>
-					<div className="mt-2">
+			<div className="flex flex-col gap-x-4 md:grid md:grid-cols-2">
+				<div className="flex flex-col gap-y-2">
+					<span className="flex items-center justify-between">
+						<label
+							htmlFor="comment"
+							className="text-activatable block text-sm/6 font-medium"
+						>
+							Add your JPL source
+						</label>
+						{/* add a file input that reads the contents and sets the input state */}
+						<input
+							type="file"
+							id="file"
+							className="hidden"
+							onChange={async (e) => {
+								let text = await e.target.files[0]?.text();
+								if (text) {
+									setInput(text);
+								}
+							}}
+						/>
+						<label
+							htmlFor="file"
+							className="border-activatable hover:border-active ml-4 w-min cursor-pointer rounded-md border-2 border-dashed bg-transparent px-2 text-sm text-nowrap text-white transition-colors"
+						>
+							Upload a file
+						</label>
+					</span>
+					<div>
 						<textarea
 							ref={textareaRef}
 							id="comment"
 							name="comment"
 							rows={4}
-							className="outline-activatable block max-h-[500px] w-full rounded-md bg-transparent px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 transition-colors placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6"
+							className="outline-activatable block max-h-[500px] w-full resize-none rounded-md bg-transparent px-3 py-1.5 text-base text-white outline-1 outline-offset-2 transition-colors placeholder:text-gray-400 focus:outline-2 sm:text-sm/6"
 							onChange={(e) => setInput(e.target.value)}
+							onPaste={async (e) => {
+								e.preventDefault();
+								let pastedData = e.clipboardData.getData('text');
+								if (pastedData) {
+									setInput(pastedData);
+								}
+								pastedData = await e.clipboardData.files[0]?.text();
+								if (pastedData) {
+									setInput(pastedData);
+								}
+							}}
 							value={input}
 							spellCheck={false}
 						/>
@@ -139,7 +165,7 @@ export default function RJPLCPage() {
 				</div>
 				<div className="flex flex-col gap-y-4">
 					<label className="text-activatable block text-sm/6 font-medium">Compiler output</label>
-					<div className="flex gap-y-1">{content}</div>
+					<div className="flex max-h-[500px] gap-y-1 overflow-y-auto">{content}</div>
 				</div>
 			</div>
 		</PageContainer>

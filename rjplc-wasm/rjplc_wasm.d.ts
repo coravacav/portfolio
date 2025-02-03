@@ -4,6 +4,9 @@ export function perform_steps(contents: string): Output;
 export class Output {
   private constructor();
   free(): void;
+  lex_success: boolean;
+  parse_success: boolean;
+  type_check_success: boolean;
   readonly lex_output: string | undefined;
   readonly parse_output: string | undefined;
   readonly type_check_output: string | undefined;
@@ -14,6 +17,12 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_output_free: (a: number, b: number) => void;
+  readonly __wbg_get_output_lex_success: (a: number) => number;
+  readonly __wbg_set_output_lex_success: (a: number, b: number) => void;
+  readonly __wbg_get_output_parse_success: (a: number) => number;
+  readonly __wbg_set_output_parse_success: (a: number, b: number) => void;
+  readonly __wbg_get_output_type_check_success: (a: number) => number;
+  readonly __wbg_set_output_type_check_success: (a: number, b: number) => void;
   readonly output_lex_output: (a: number) => [number, number];
   readonly output_parse_output: (a: number) => [number, number];
   readonly output_type_check_output: (a: number) => [number, number];
