@@ -18,10 +18,10 @@ export interface InitOutput {
   readonly output_parse_output: (a: number) => [number, number];
   readonly output_type_check_output: (a: number) => [number, number];
   readonly perform_steps: (a: number, b: number) => number;
-  readonly __wbindgen_export_0: WebAssembly.Table;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+  readonly __wbindgen_export_3: WebAssembly.Table;
   readonly __wbindgen_start: () => void;
 }
 
