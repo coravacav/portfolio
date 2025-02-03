@@ -5,6 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import init, { perform_steps, Output } from 'rjplc-wasm';
 
+export const metadata = {
+	title: "Stefan's Rust JPL Compiler",
+	description: 'Has a visual. Works, probably?',
+};
+
 const tabs = [
 	{
 		name: 'lex',
