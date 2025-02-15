@@ -15,6 +15,10 @@ const tabs = [
 		name: 'parse',
 		idx: 1,
 	},
+	{
+		name: 'typecheck',
+		idx: 2,
+	},
 ];
 
 export default function RJPLCPage() {
@@ -43,7 +47,11 @@ export default function RJPLCPage() {
 		}
 	}, [input, loaded]);
 
-	const validArray = [compilerOutput?.lex_success || false, compilerOutput?.parse_success || false];
+	const validArray = [
+		compilerOutput?.lex_success || false,
+		compilerOutput?.parse_success || false,
+		compilerOutput?.type_check_success || false,
+	];
 
 	const content = useMemo(() => {
 		if (compilerOutput === undefined) {
@@ -70,6 +78,19 @@ export default function RJPLCPage() {
 					height="500px"
 					defaultLanguage="clojure"
 					value={compilerOutput.parse_output}
+					theme="vs-dark"
+					onMount={(editor, monaco) => {
+						editor.updateOptions({ wordWrap: 'on' });
+						editor.getModel().setEOL(monaco.editor.EndOfLineSequence.LF);
+					}}
+				/>
+			);
+		} else if (compilerOutput?.type_check_output.length > 0 && currentTab === 2) {
+			return (
+				<Editor
+					height="500px"
+					defaultLanguage="clojure"
+					value={compilerOutput.type_check_output}
 					theme="vs-dark"
 					onMount={(editor, monaco) => {
 						editor.updateOptions({ wordWrap: 'on' });
