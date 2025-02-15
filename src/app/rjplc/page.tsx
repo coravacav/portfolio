@@ -60,6 +60,7 @@ export default function RJPLCPage() {
 						// 	noSemanticValidation: true,
 						// 	noSyntaxValidation: true,
 						// });
+						editor.getModel().setEOL(monaco.editor.EndOfLineSequence.LF);
 					}}
 				/>
 			);
@@ -70,8 +71,9 @@ export default function RJPLCPage() {
 					defaultLanguage="clojure"
 					value={compilerOutput.parse_output}
 					theme="vs-dark"
-					onMount={(editor) => {
+					onMount={(editor, monaco) => {
 						editor.updateOptions({ wordWrap: 'on' });
+						editor.getModel().setEOL(monaco.editor.EndOfLineSequence.LF);
 					}}
 				/>
 			);
@@ -172,6 +174,7 @@ export default function RJPLCPage() {
 							onChange={(value) => setInput(value)}
 							onMount={(editor, monaco) => {
 								editor.updateOptions({ wordWrap: 'on' });
+								editor.getModel().setEOL(monaco.editor.EndOfLineSequence.LF);
 							}}
 						/>
 					</div>
