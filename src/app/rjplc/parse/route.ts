@@ -1,9 +1,8 @@
 import { console } from 'node:inspector/promises';
 import init, { perform_steps } from 'rjplc-wasm';
-import wasm from 'rjplc-wasm/rjplc_wasm_bg.wasm';
 
 export async function POST(request: Request) {
-	await init(wasm);
+	await init();
 
 	try {
 		let body = await request.text();

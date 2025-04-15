@@ -4,24 +4,26 @@ import nextMDX from '@next/mdx';
 const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'mdx'],
 	reactStrictMode: true,
+	turbopack: true,
 	experimental: {
 		scrollRestoration: true,
+		reactCompiler: true,
 	},
-	webpack(config, { isServer, dev, webpack }) {
-		// Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
-		config.experiments = { ...config.experiments, asyncWebAssembly: true };
+	// webpack(config, { isServer, dev, webpack }) {
+	// 	// Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
+	// 	config.experiments = { ...config.experiments, asyncWebAssembly: true };
 
-		config.module.rules.push({
-			test: /\.wasm$/,
-			type: 'asset/inline',
-		});
+	// 	config.module.rules.push({
+	// 		test: /\.wasm$/,
+	// 		type: 'asset/inline',
+	// 	});
 
-		config.module.generator['asset/resource'] = config.module.generator['asset'];
-		config.module.generator['asset/source'] = config.module.generator['asset'];
-		delete config.module.generator['asset'];
+	// 	config.module.generator['asset/resource'] = config.module.generator['asset'];
+	// 	config.module.generator['asset/source'] = config.module.generator['asset'];
+	// 	delete config.module.generator['asset'];
 
-		return config;
-	},
+	// 	return config;
+	// },
 };
 
 const withMDX = nextMDX({
