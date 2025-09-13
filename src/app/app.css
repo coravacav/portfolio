@@ -25,7 +25,8 @@
 
 /* Base styles for the mask */
 .svg-mask {
-	mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+	mask-image:
+		linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
 		linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 	mask-size: 100% 50%;
 	mask-repeat: no-repeat;
@@ -69,4 +70,8 @@
 
 ::-webkit-scrollbar-thumb {
 	@apply rounded-full bg-neutral-500;
+}
+
+.shiki:has(> code) {
+	@apply !bg-transparent;
 }

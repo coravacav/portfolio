@@ -12,7 +12,7 @@ export default async function BlogPage() {
 		)
 	)
 		.filter(Boolean)
-		.filter(({ draft }) => process.env.NODE_ENV === 'development' || draft === false);
+		.filter(({ draft }) => (process.env.NODE_ENV === 'development' && draft !== undefined) || draft === false);
 
 	return (
 		<PageContainer
@@ -23,7 +23,7 @@ export default async function BlogPage() {
 			{posts.map(({ href, title = '', description = '', date, datetime }) => (
 				<Link
 					href={href}
-					key={title}
+					key={href}
 				>
 					<article className="group flex flex-col items-start justify-between rounded-sm bg-neutral-900 p-8 transition-colors">
 						<div className="w-full">
