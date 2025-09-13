@@ -1,3 +1,3 @@
 export default function BlogPostLayout({ children }) {
-	return <>{children}</>;
+	return children;
 }

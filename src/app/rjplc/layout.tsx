@@ -4,5 +4,5 @@ export const metadata = {
 };
 
 export default function RJPLCLayout({ children }) {
-	return <>{children}</>;
+	return children;
 }
