@@ -1,12 +1,38 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+@property --property-A {
+	syntax: '<color>';
+	initial-value: #fff;
+	inherits: false;
+}
+
+@property --property-B {
+	syntax: '<color>';
+	initial-value: #fff;
+	inherits: false;
+}
+
 @theme {
 	--color-active: #9381ff;
 	--color-hover: #ffa987;
 	--color-activatable: #a01a58;
 	--color-light: #f7ebe8;
 	--color-dark: #1e1e24;
+
+	/* Wire Next Fonts to Tailwind v4 font tokens */
+	--font-sans: var(--font-atkinson-next, ui-sans-serif, system-ui, sans-serif);
+	--font-mono: var(
+		--font-atkinson-mono,
+		ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		Monaco,
+		Consolas,
+		'Liberation Mono',
+		'Courier New',
+		monospace
+	);
 
 	--animate-helix-left: helix-left 1s linear infinite;
 	@keyframes helix-left {
@@ -20,6 +46,14 @@
 		from {
 			transform: translateX(-12px);
 		}
+	}
+}
+
+@utility transition-gradient-hover {
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	&:hover {
+		background-position: 100% 100%;
 	}
 }
 
@@ -74,4 +108,45 @@
 
 .shiki:has(> code) {
 	@apply !bg-transparent;
+}
+
+/* Ensure inline and block code use mono font */
+code,
+pre,
+pre code {
+	@apply font-mono;
+}
+
+/* Gradient headings inside blog prose */
+.prose :where(h1, h2, h3, h4, h5, h6) {
+	/* render gradient as text */
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	/* subtle lift on dark bg */
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.prose :where(h1) {
+	@apply from-active via-activatable to-hover transition-gradient-hover bg-gradient-to-r transition-all duration-500;
+}
+
+.prose :where(h2) {
+	@apply text-activatable;
+}
+
+.prose :where(h3) {
+	@apply text-active/70;
+}
+
+.prose :where(h4) {
+	@apply text-hover;
+}
+
+.prose :where(h5) {
+	background-image: linear-gradient(0deg, var(--color-active), var(--color-activatable)); /* ↑ */
+}
+
+.prose :where(h6) {
+	background-image: linear-gradient(180deg, var(--color-active), var(--color-activatable)); /* ↓ */
 }

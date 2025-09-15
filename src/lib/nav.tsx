@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { pageWidth } from '@/styles/pageWidth';
 import Helix from './helix';
@@ -20,14 +20,15 @@ export const navigation = [
 export const Name = ({ hide = false }) => (
 	<Link
 		href="/"
-		className="group hover:text-hover -m-1.5 p-1.5 text-2xl font-semibold text-white transition-colors 2xl:text-3xl"
+		className="group -m-1.5 p-1.5 text-2xl font-semibold 2xl:text-3xl"
 	>
 		<Helix
 			height={16}
 			show={!hide}
 			style="none"
 			strokeStyles="stroke-activatable/60 stroke-[1.5px]"
-			className="right-[-10px] left-[-10px] w-[calc(100%+20px)] lg:hidden"
+			containerStyles="text-transparent bg-clip-text from-active via-activatable to-hover transition-gradient-hover bg-gradient-to-r transition-all duration-500"
+			className="right-[-10px] left-[-10px] w-[calc(100%+20px)] transition-colors lg:hidden"
 		>
 			Stefan Todorov
 		</Helix>

@@ -6,6 +6,7 @@ type HelixAnimationProps = {
 	style?: 'topright' | 'topleft' | 'none';
 	strokeStyles?: string;
 	rectStyles?: string;
+	containerStyles?: string;
 	className?: string;
 	height?: number;
 	direction?: 'left' | 'right';
@@ -74,12 +75,13 @@ export function HelixAnimation({
 export default function Helix({
 	className,
 	children,
+	containerStyles,
 	...rest
 }: {
 	children: ReactNode;
 } & HelixAnimationProps) {
 	return (
-		<div className={'relative w-min whitespace-nowrap'}>
+		<div className={cn('relative w-min whitespace-nowrap', containerStyles)}>
 			{children}
 			<HelixAnimation
 				className={cn('fade-in absolute top-full', className)}

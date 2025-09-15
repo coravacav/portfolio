@@ -1,11 +1,18 @@
 import Nav from '@/lib/nav';
-import { Inter } from 'next/font/google';
+import { Atkinson_Hyperlegible_Next, Atkinson_Hyperlegible_Mono } from 'next/font/google';
 import './app.css';
 
-// If loading a variable font, you don't need to specify the font weight
-const inter = Inter({
+// Load Atkinson Hyperlegible (Next) for sans and Atkinson Hyperlegible Mono for code
+const atkinsonNext = Atkinson_Hyperlegible_Next({
 	subsets: ['latin'],
 	display: 'swap',
+	variable: '--font-atkinson-next',
+});
+
+const atkinsonMono = Atkinson_Hyperlegible_Mono({
+	subsets: ['latin'],
+	display: 'swap',
+	variable: '--font-atkinson-mono',
 });
 
 export const metadata = {
@@ -17,9 +24,9 @@ export default function RootLayout({ children }) {
 	return (
 		<html
 			lang="en"
-			className={inter.className}
+			className={`${atkinsonNext.variable} ${atkinsonMono.variable}`}
 		>
-			<body className="relative bg-neutral-800 pb-10">
+			<body className="relative bg-neutral-800 pb-10 font-sans antialiased">
 				<Nav />
 				{children}
 			</body>
