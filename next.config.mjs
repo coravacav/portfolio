@@ -9,6 +9,7 @@ const nextConfig = {
 		scrollRestoration: true,
 		reactCompiler: true,
 	},
+	output: 'export',
 	// webpack(config, { isServer, dev, webpack }) {
 	// 	// Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
 	// 	config.experiments = { ...config.experiments, asyncWebAssembly: true };
