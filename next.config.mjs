@@ -5,9 +5,9 @@ const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'mdx'],
 	reactStrictMode: true,
 	turbopack: true,
+	reactCompiler: true,
 	experimental: {
 		scrollRestoration: true,
-		reactCompiler: true,
 	},
 	output: 'export',
 	// webpack(config, { isServer, dev, webpack }) {
