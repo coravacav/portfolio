@@ -4,7 +4,6 @@ import nextMDX from '@next/mdx';
 const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'mdx'],
 	reactStrictMode: true,
-	turbopack: true,
 	reactCompiler: true,
 	experimental: {
 		scrollRestoration: true,
