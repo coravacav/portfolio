@@ -24,7 +24,6 @@ const tabs = [
 export default function RJPLCPage() {
 	const [loaded, setLoaded] = useState(false);
 	const [input, setInput] = useState('');
-	const [compilerOutput, setCompilerOutput] = useState<Output>();
 	const [currentTab, setCurrentTab] = useState<number>(1);
 
 	useEffect(() => {
@@ -33,7 +32,7 @@ export default function RJPLCPage() {
 		});
 	}, []);
 
-	useEffect(() => {
+	const compilerOutput = useMemo<Output | undefined>(() => {
 		if (loaded && input.length > 0) {
 			let modified;
 			if (!input.endsWith('\n')) {
@@ -41,10 +40,10 @@ export default function RJPLCPage() {
 			} else {
 				modified = input;
 			}
-			setCompilerOutput(perform_steps(modified));
-		} else {
-			setCompilerOutput(undefined);
+			return perform_steps(modified);
 		}
+
+		return undefined;
 	}, [input, loaded]);
 
 	const validArray = [

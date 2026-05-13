@@ -1,4 +1,4 @@
 build:
-	npm run build --turbopack
+	bun run build
 start:
-	npm run start
+	bun run start

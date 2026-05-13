@@ -1,17 +1,28 @@
 import Nav from '@/lib/nav';
-import { Atkinson_Hyperlegible_Next, Atkinson_Hyperlegible_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './app.css';
 
-// Load Atkinson Hyperlegible (Next) for sans and Atkinson Hyperlegible Mono for code
-const atkinsonNext = Atkinson_Hyperlegible_Next({
-	subsets: ['latin'],
+const atkinsonNext = localFont({
+	src: [
+		{ path: './fonts/atkinson-hyperlegible-next-400.ttf', weight: '400', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-next-500.ttf', weight: '500', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-next-600.ttf', weight: '600', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-next-700.ttf', weight: '700', style: 'normal' },
+	],
 	display: 'swap',
+	adjustFontFallback: false,
 	variable: '--font-atkinson-next',
 });
 
-const atkinsonMono = Atkinson_Hyperlegible_Mono({
-	subsets: ['latin'],
+const atkinsonMono = localFont({
+	src: [
+		{ path: './fonts/atkinson-hyperlegible-mono-400.ttf', weight: '400', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-mono-500.ttf', weight: '500', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-mono-600.ttf', weight: '600', style: 'normal' },
+		{ path: './fonts/atkinson-hyperlegible-mono-700.ttf', weight: '700', style: 'normal' },
+	],
 	display: 'swap',
+	adjustFontFallback: false,
 	variable: '--font-atkinson-mono',
 });
 

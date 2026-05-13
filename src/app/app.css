@@ -20,7 +20,6 @@
 	--color-light: #f7ebe8;
 	--color-dark: #1e1e24;
 
-	/* Wire Next Fonts to Tailwind v4 font tokens */
 	--font-sans: var(--font-atkinson-next, ui-sans-serif, system-ui, sans-serif);
 	--font-mono: var(
 		--font-atkinson-mono,
